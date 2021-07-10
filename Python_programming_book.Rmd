@@ -607,5 +607,100 @@ Hãy sử dụng cấu trúc lặp for và while thực hiện các bài toán s
   
   **Bài 6.** Số lũy thừa dạng 2-3: Một số tự nhiên N được gọi là có dạng lũy thừa 2-3 nếu N có dạng: $N=2^{x}3^{y}$. Ví dụ: 2,3,6,12... là các số lũy thừa 2-3. Nhập vào một số tự nhiên N từ bàn phím, kiểm tra xem N có phải là lũy thừa 2-3 không?
 
+# Kiểu dữ liệu chuỗi
+## Định nghĩa
+       Chuỗi là một dãy các ký tự liên tiếp. Mọi ký tự nằm trong dấu "" (ngoặc kép) và dấu '' (ngoặc đơn) đều được xem là chuỗi trong Python. Chuỗi rỗng được xác định là chuỗi không có ký tự nào.
+
+       Ví dụ về chuỗi như sau: "Lập trình Python!", 'Đây cũng là chuỗi!'
+
+       Các ký tự trong chuỗi là các ký tự thuộc bảng mã Unicode hoặc bảng mã ASCII. Chính vì vậy, chuỗi trong Python có hỗ trợ tiếng Việt. Ký tự trong chuỗi được đánh chỉ số thứ tự bằng 0,1,...theo chiều từ trái sang phải và -1,-2,...theo chiều từ phải sang trái. Số ký tự trong chuỗi được gọi là độ dài của chuỗi
+<center>
+![String in Python](D:/Books\Books of Quy\Python Programming-github\stringpython.png)
+
+</center>
+
+## Thao tác với chuỗi
+### Lấy độ dài chuỗi
+Chúng ta sử dụng phương thức *len(biến chuỗi)* để lấy được độ dài của chuỗi. Ví dụ:
+```{python}
+str1 = "Learning Python is quite interesting!"
+print("Chuoi str1: ",str1)
+print("Co do dai la: ", len(str1))
+```
+
+### Truy cập phần tử của chuỗi
+       Như vậy có thể thấy rằng chuỗi bản chất chính là một mảng 1 chiều các ký tự. Tuy nhiên, Python không có kiểu dữ liệu ký tự, một ký tự đơn giản chỉ là một chuỗi có độ dài bằng 1. Dấu ngoặc vuông [] có thể được sử dụng để truy cập các phần tử của chuỗi. Ký tự đầu tiên có chỉ số là 0.
+
+```{python}
+str1 = "Hello World!"
+print(str1[0])
+str2 = "HELLO"
+print(str2[:])
+print(str2[0:])
+print(str2[:5])
+print(str2[:3])
+print(str2[0:2])
+print(str2[1:4])
+```
+
+       Truy cập chuỗi bằng chỉ mục âm: Sử dụng các chỉ mục âm để lấy ra chuỗi con bắt đầu từ cuối chuỗi: 
+```{python}
+str3 = "Hello World!"
+print(str3[-5:-2])
+```
+
+### Ghép chuỗi và lặp chuỗi
+       Python cho phép tạo một chuỗi mới bằng cách ghép các chuỗi lại với nhau:
+```{python}
+str1 = "Tran Quang Quy"
+str2 = " ICTU"
+str = str1 + str2
+print(str)
+```
+
+       Để ghép nhiều lần một chuỗi lại với nhau, ngoài cách ghép trực tiếp chuỗi như trên, Python còn cho phép thực hiện một cách ngắn gọn hơn như sau:
+```{python}
+str1 = "Python Programming"
+str1 = str*7
+print(str1)
+```
+
+### So sánh chuỗi
+       So sánh chuỗi được thực hiện bằng cách lần lượt so sánh các ký tự trong chuỗi từ trái sang phải. Nếu gặp một ký tự không bằng nhau thì chuỗi nào chứa ký tự lớn hơn sẽ là chuỗi lớn hơn.
+
+```{python}
+str1 = "Lap trinh Python"
+str2 = "That la thu vi"
+if str1 < str2:
+  print("Xau nho hon la: ", str1)
+else:
+  print("Xau lon hon la: ", str2)
+```
+
+### Đảo ngược thứ tự chuỗi
+       Để đảo ngược thứ tự của một chuỗi, ta thực hiện:
+
+```{python}
+str = "Python is perfect!"
+str1 = str[::-1]
+print(str)
+print(str1)
+```
+
+### Bài tập luyện tập chuỗi
+Thực hiện luyện tập một số dạng bài tập về chuỗi cơ bản sau đây:
+
+  **Bài 1:** Chuỗi đối xứng: Một chuỗi được gọi là đối xứng nếu đọc chúng từ trái sang phải cũng giống như đọc từ phải sang trái. Ví dụ: "madam", "2332" được coi là các chuỗi đối xứng. Hãy viết chương trình kiểm tra tính đối xứng của một chuỗi.
+ 
+  **Bài 2:** Nén chuỗi: Cho một chuỗi nào đó gồm các ký tự chữ cái La-tinh thường. Chúng ta thực hiện nén chuỗi theo quy tắc sau: Với một dãy các ký tự liên tiếp, thay thế bằng: <ký tự><số lần xuất hiện>. Ví dụ: str = "mmmbddddddccca". Chuỗi này được nén lại là : m3bd6c3a. Yêu cầu: Hãy nhập vào một chuỗi và thực hiện nén chuỗi đó và in ra màn hình.
+  
+  **Bài 3:** Tách số và ký tự chữ cái: Nhập vào một chuỗi gồm các ký tự số và ký tự chữ cái La-tinh nhỏ 'a', 'b', ..., 'z'. Hãy tách chuỗi được nhập thành hai chuỗi với điều kiện một chuỗi chỉ chứa các ký tự chữ cái và một chuỗi chỉ chưa các ký tự số. Ví dụ: Cho chuỗi sau: "tranquangquy1988" được tách thành hai chuỗi là "tranquangquy" và "1988".
+  
+
+  
+
+
+
+
 
 

@@ -200,6 +200,19 @@ Trường Đại học Công nghệ Thông tin &amp; Truyền thông Thái Nguy�
 <li><a href="#điều-khiển-vòng-lặp-break-và-continue"><span class="toc-section-number">4.4</span> Điều khiển vòng lặp, break và continue</a></li>
 <li><a href="#bài-tập-áp-dụng-for-while"><span class="toc-section-number">4.5</span> Bài tập áp dụng for, while</a></li>
 </ul></li>
+<li><a href="#kiểu-dữ-liệu-chuỗi"><span class="toc-section-number">5</span> Kiểu dữ liệu chuỗi</a>
+<ul>
+<li><a href="#định-nghĩa"><span class="toc-section-number">5.1</span> Định nghĩa</a></li>
+<li><a href="#thao-tác-với-chuỗi"><span class="toc-section-number">5.2</span> Thao tác với chuỗi</a>
+<ul>
+<li><a href="#lấy-độ-dài-chuỗi"><span class="toc-section-number">5.2.1</span> Lấy độ dài chuỗi</a></li>
+<li><a href="#truy-cập-phần-tử-của-chuỗi"><span class="toc-section-number">5.2.2</span> Truy cập phần tử của chuỗi</a></li>
+<li><a href="#ghép-chuỗi-và-lặp-chuỗi"><span class="toc-section-number">5.2.3</span> Ghép chuỗi và lặp chuỗi</a></li>
+<li><a href="#so-sánh-chuỗi"><span class="toc-section-number">5.2.4</span> So sánh chuỗi</a></li>
+<li><a href="#đảo-ngược-thứ-tự-chuỗi"><span class="toc-section-number">5.2.5</span> Đảo ngược thứ tự chuỗi</a></li>
+<li><a href="#bài-tập-luyện-tập-chuỗi"><span class="toc-section-number">5.2.6</span> Bài tập luyện tập chuỗi</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -504,9 +517,9 @@ Trường Đại học Công nghệ Thông tin &amp; Truyền thông Thái Nguy�
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> randint(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> uniform(<span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;So x duoc tao ngau nhien la: &quot;</span>, x)</span></code></pre></div>
-<pre><code>## So x duoc tao ngau nhien la:  2</code></pre>
+<pre><code>## So x duoc tao ngau nhien la:  8</code></pre>
 <div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;So y duoc tao ngau nhien la: &quot;</span>, y)</span></code></pre></div>
-<pre><code>## So y duoc tao ngau nhien la:  -2.246783318658572</code></pre>
+<pre><code>## So y duoc tao ngau nhien la:  -6.085172333522749</code></pre>
 <p>Một số hàm toán học thông dụng khác có thể xem tại bảng sau:</p>
 <table>
 <thead>
@@ -887,6 +900,99 @@ Cho một số tự nhiên <span class="math inline">\(n(n\leq{10^{1000}})\)</sp
 <p><strong>Bài 4.</strong> Kiểm tra số nguyên tố - Cho một số tự nhiên N nhập vào từ bàn phím, hãy kiểm tra xem N có phải là một số nguyên tố hay không?</p>
 <p><strong>Bài 5.</strong> Số hoàn hảo - Một số tự nhiên N được gọi là một số hoàn hảo nếu tổng các ước dương của nó bằng 2N. Ví dụ: N=6 có các ước dương là 1,2,3,6. Tổng bằng 2*6=12. Như vậy 6 là một số hoàn hảo. Hãy nhập vào một đoạn [a;b]. Kiểm tra xem có bao nhiêu số hoàn hảo nằm trong khoảng này.</p>
 <p><strong>Bài 6.</strong> Số lũy thừa dạng 2-3: Một số tự nhiên N được gọi là có dạng lũy thừa 2-3 nếu N có dạng: <span class="math inline">\(N=2^{x}3^{y}\)</span>. Ví dụ: 2,3,6,12… là các số lũy thừa 2-3. Nhập vào một số tự nhiên N từ bàn phím, kiểm tra xem N có phải là lũy thừa 2-3 không?</p>
+</div>
+</div>
+<div id="kiểu-dữ-liệu-chuỗi" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Kiểu dữ liệu chuỗi</h1>
+<div id="định-nghĩa" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Định nghĩa</h2>
+<p>       Chuỗi là một dãy các ký tự liên tiếp. Mọi ký tự nằm trong dấu "" (ngoặc kép) và dấu ’’ (ngoặc đơn) đều được xem là chuỗi trong Python. Chuỗi rỗng được xác định là chuỗi không có ký tự nào.</p>
+<p>       Ví dụ về chuỗi như sau: “Lập trình Python!”, ‘Đây cũng là chuỗi!’</p>
+       Các ký tự trong chuỗi là các ký tự thuộc bảng mã Unicode hoặc bảng mã ASCII. Chính vì vậy, chuỗi trong Python có hỗ trợ tiếng Việt. Ký tự trong chuỗi được đánh chỉ số thứ tự bằng 0,1,…theo chiều từ trái sang phải và -1,-2,…theo chiều từ phải sang trái. Số ký tự trong chuỗi được gọi là độ dài của chuỗi
+<center>
+<div class="figure">
+<img src="D:/Books/Books%20of%20Quy/Python%20Programming-github/stringpython.png" alt="" />
+<p class="caption">String in Python</p>
+</div>
+</center>
+</div>
+<div id="thao-tác-với-chuỗi" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Thao tác với chuỗi</h2>
+<div id="lấy-độ-dài-chuỗi" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Lấy độ dài chuỗi</h3>
+<p>Chúng ta sử dụng phương thức <em>len(biến chuỗi)</em> để lấy được độ dài của chuỗi. Ví dụ:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>str1 <span class="op">=</span> <span class="st">&quot;Learning Python is quite interesting!&quot;</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Chuoi str1: &quot;</span>,str1)</span></code></pre></div>
+<pre><code>## Chuoi str1:  Learning Python is quite interesting!</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Co do dai la: &quot;</span>, <span class="bu">len</span>(str1))</span></code></pre></div>
+<pre><code>## Co do dai la:  37</code></pre>
+</div>
+<div id="truy-cập-phần-tử-của-chuỗi" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Truy cập phần tử của chuỗi</h3>
+<p>       Như vậy có thể thấy rằng chuỗi bản chất chính là một mảng 1 chiều các ký tự. Tuy nhiên, Python không có kiểu dữ liệu ký tự, một ký tự đơn giản chỉ là một chuỗi có độ dài bằng 1. Dấu ngoặc vuông [] có thể được sử dụng để truy cập các phần tử của chuỗi. Ký tự đầu tiên có chỉ số là 0.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>str1 <span class="op">=</span> <span class="st">&quot;Hello World!&quot;</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str1[<span class="dv">0</span>])</span></code></pre></div>
+<pre><code>## H</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>str2 <span class="op">=</span> <span class="st">&quot;HELLO&quot;</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str2[:])</span></code></pre></div>
+<pre><code>## HELLO</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str2[<span class="dv">0</span>:])</span></code></pre></div>
+<pre><code>## HELLO</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str2[:<span class="dv">5</span>])</span></code></pre></div>
+<pre><code>## HELLO</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str2[:<span class="dv">3</span>])</span></code></pre></div>
+<pre><code>## HEL</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str2[<span class="dv">0</span>:<span class="dv">2</span>])</span></code></pre></div>
+<pre><code>## HE</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str2[<span class="dv">1</span>:<span class="dv">4</span>])</span></code></pre></div>
+<pre><code>## ELL</code></pre>
+<p>       Truy cập chuỗi bằng chỉ mục âm: Sử dụng các chỉ mục âm để lấy ra chuỗi con bắt đầu từ cuối chuỗi:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>str3 <span class="op">=</span> <span class="st">&quot;Hello World!&quot;</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str3[<span class="op">-</span><span class="dv">5</span>:<span class="op">-</span><span class="dv">2</span>])</span></code></pre></div>
+<pre><code>## orl</code></pre>
+</div>
+<div id="ghép-chuỗi-và-lặp-chuỗi" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Ghép chuỗi và lặp chuỗi</h3>
+<p>       Python cho phép tạo một chuỗi mới bằng cách ghép các chuỗi lại với nhau:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>str1 <span class="op">=</span> <span class="st">&quot;Tran Quang Quy&quot;</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>str2 <span class="op">=</span> <span class="st">&quot; ICTU&quot;</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span> <span class="op">=</span> str1 <span class="op">+</span> str2</span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>)</span></code></pre></div>
+<pre><code>## Tran Quang Quy ICTU</code></pre>
+<p>       Để ghép nhiều lần một chuỗi lại với nhau, ngoài cách ghép trực tiếp chuỗi như trên, Python còn cho phép thực hiện một cách ngắn gọn hơn như sau:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>str1 <span class="op">=</span> <span class="st">&quot;Python Programming&quot;</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>str1 <span class="op">=</span> <span class="bu">str</span><span class="op">*</span><span class="dv">7</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str1)</span></code></pre></div>
+<pre><code>## Tran Quang Quy ICTUTran Quang Quy ICTUTran Quang Quy ICTUTran Quang Quy ICTUTran Quang Quy ICTUTran Quang Quy ICTUTran Quang Quy ICTU</code></pre>
+</div>
+<div id="so-sánh-chuỗi" class="section level3" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> So sánh chuỗi</h3>
+<p>       So sánh chuỗi được thực hiện bằng cách lần lượt so sánh các ký tự trong chuỗi từ trái sang phải. Nếu gặp một ký tự không bằng nhau thì chuỗi nào chứa ký tự lớn hơn sẽ là chuỗi lớn hơn.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>str1 <span class="op">=</span> <span class="st">&quot;Lap trinh Python&quot;</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>str2 <span class="op">=</span> <span class="st">&quot;That la thu vi&quot;</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> str1 <span class="op">&lt;</span> str2:</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;Xau nho hon la: &quot;</span>, str1)</span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;Xau lon hon la: &quot;</span>, str2)</span></code></pre></div>
+<pre><code>## Xau nho hon la:  Lap trinh Python</code></pre>
+</div>
+<div id="đảo-ngược-thứ-tự-chuỗi" class="section level3" number="5.2.5">
+<h3><span class="header-section-number">5.2.5</span> Đảo ngược thứ tự chuỗi</h3>
+<p>       Để đảo ngược thứ tự của một chuỗi, ta thực hiện:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span> <span class="op">=</span> <span class="st">&quot;Python is perfect!&quot;</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>str1 <span class="op">=</span> <span class="bu">str</span>[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>)</span></code></pre></div>
+<pre><code>## Python is perfect!</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str1)</span></code></pre></div>
+<pre><code>## !tcefrep si nohtyP</code></pre>
+</div>
+<div id="bài-tập-luyện-tập-chuỗi" class="section level3" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> Bài tập luyện tập chuỗi</h3>
+<p>Thực hiện luyện tập một số dạng bài tập về chuỗi cơ bản sau đây:</p>
+<p><strong>Bài 1:</strong> Chuỗi đối xứng: Một chuỗi được gọi là đối xứng nếu đọc chúng từ trái sang phải cũng giống như đọc từ phải sang trái. Ví dụ: “madam”, “2332” được coi là các chuỗi đối xứng. Hãy viết chương trình kiểm tra tính đối xứng của một chuỗi.</p>
+<p><strong>Bài 2:</strong> Nén chuỗi: Cho một chuỗi nào đó gồm các ký tự chữ cái La-tinh thường. Chúng ta thực hiện nén chuỗi theo quy tắc sau: Với một dãy các ký tự liên tiếp, thay thế bằng: <ký tự><số lần xuất hiện>. Ví dụ: str = “mmmbddddddccca”. Chuỗi này được nén lại là : m3bd6c3a. Yêu cầu: Hãy nhập vào một chuỗi và thực hiện nén chuỗi đó và in ra màn hình.</p>
+<p><strong>Bài 3:</strong> Tách số và ký tự chữ cái: Nhập vào một chuỗi gồm các ký tự số và ký tự chữ cái La-tinh nhỏ ‘a’, ‘b’, …, ‘z’. Hãy tách chuỗi được nhập thành hai chuỗi với điều kiện một chuỗi chỉ chứa các ký tự chữ cái và một chuỗi chỉ chưa các ký tự số. Ví dụ: Cho chuỗi sau: “tranquangquy1988” được tách thành hai chuỗi là “tranquangquy” và “1988”.</p>
+</div>
 </div>
 </div>
 </div>
