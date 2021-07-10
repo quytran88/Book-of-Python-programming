@@ -1,0 +1,611 @@
+---
+title: "Lập trình Python"
+author:
+- name: TS. TRẦN QUANG QUÝ (tqquy@ictu.edu.vn)
+  affiliation: Trường Đại học Công nghệ Thông tin & Truyền thông Thái Nguyên.
+date: "July 2021"
+output: 
+  pagedown::html_paged:
+    toc: yes
+    css:
+    - default-fonts
+    - default-page
+    - default
+    - crc
+    - crc-page
+    self_contained: no
+ # output:
+  #bookdown::gitbook: default
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(reticulate)
+```
+
+```{r}
+conda_create("r-reticulate")
+```
+
+```{r message=FALSE, warning=FALSE}
+use_condaenv("r-reticulate")
+py_config()
+```
+
+# Ngôn ngữ Python
+
+## Giới thiệu về ngôn ngữ Python
+
+       Python là ngôn ngữ lập trình cấp cao, đa mục đích được sử dụng rộng rãi. Ban đầu được thiết kế bởi Guido van Rossum vào năm 1991 và được duy trì, phát triển bởi tổ chức Python Software Foundation.
+
+       Guido Van Rossum bắt đầu nghiên cứu các sản phẩm dựa trên ứng dụng của mình vào tháng 12 năm 1989 ở Centrum Wiskunde & Informatica (CWI). Tại đây Guido van Rossum có cơ hội được tiếp xúc với ngôn ngữ lập trình ABC, trong quá trình làm việc ông đã nhận thấy ABC có rất nhiều vấn đề , tuy nhiên ông vẫn ưa chuộng những tính năng mà ABC mang lại.
+
+       Bằng sự sáng tạo và sự trợ giúp từ các cộng sự, ông đã kết hợp cú pháp của ngôn ngữ ABC và một số tính năng của nó để tạo ra ngôn ngữ lập trình mới. Cái tên được lấy cảm hứng từ một chương trình truyền hình BBC -- Monty Python, Flying Circus Circus mà ông rất hâm mộ. Thêm vào đó, với ý muốn đặt một cái tên ngắn, độc đáo và hơi bí ẩn cho phát minh của mình, Guido đặt tên cho ngôn ngữ này là Python!
+
+<center>
+
+![Ngôn ngữ Python](D:/Books\Books of Quy\Book-of-Python-programming\python.png)
+
+</center>
+
+       Python hoàn toàn tạo kiểu động và dùng cơ chế cấp phát bộ nhớ tự động; do vậy nó tương tự như Perl, Ruby, Scheme, Smalltalk, và Tcl. Python được phát triển trong một dự án mã mở, do tổ chức phi lợi nhuận Python Software Foundation quản lý.
+
+       Ban đầu, Python được phát triển để chạy trên nền Unix. Nhưng rồi theo thời gian, Python dần mở rộng sang mọi hệ điều hành từ MS-DOS đến Mac OS, OS/2, Windows, Linux và các hệ điều hành khác thuộc họ Unix. Mặc dù sự phát triển của Python có sự đóng góp của rất nhiều cá nhân, nhưng Guido van Rossum hiện nay vẫn là tác giả chủ yếu của Python. Ông giữ vai trò chủ chốt trong việc quyết định hướng phát triển của Python.
+
+<center>
+
+![Guido van Rossum](D:/Books\Books of Quy\Book-of-Python-programming\Guido_van_Rossum_OSCON_2006.jpg)
+
+</center>
+
+## Các phiên bản của Python
+
+Sự phát triển Python đến nay có thể chia làm các giai đoạn:
+
+-   *Python 1:* bao gồm các bản phát hành 1.x. Giai đoạn này, kéo dài từ đầu đến cuối thập niên 1990. Từ năm 1990 đến 1995, Guido làm việc tại CWI (Centrum voor Wiskunde en Informatica - Trung tâm Toán-Tin học tại Amsterdam, Hà Lan). Vì vậy, các phiên bản Python đầu tiên đều do CWI phát hành. Phiên bản cuối cùng phát hành tại CWI là 1.2.
+-   *Python 2:* vào năm 2000, Guido và nhóm phát triển Python dời đến BeOpen.com và thành lập BeOpen PythonLabs team. Phiên bản Python 2.0 được phát hành tại đây. Sau khi phát hành Python 2.0, Guido và các thành viên PythonLabs gia nhập Digital Creations.
+-   *Python 3* còn gọi là Python 3000 hoặc Py3K: Dòng 3.x sẽ không hoàn toàn tương thích với dòng 2.x, tuy vậy có công cụ hỗ trợ chuyển đổi từ các phiên bản 2.x sang 3.x. Nguyên tắc chủ đạo để phát triển Python 3.x là "bỏ cách làm việc cũ nhằm hạn chế trùng lặp về mặt chức năng của Python".
+
+## Các lĩnh vực sử dụng Python
+
+       Các đặc trưng của Python giúp cho Python được sử dụng rộng rãi, phổ biến trong cộng đồng lập trình. Có đến hàng hàng ngàn thư viện hỗ trợ ngôn ngữ lập trình Python với mục tiêu nhất định
+
+### Web and internet development
+
+       Python cung cấp cho người dùng chúng ta rất nhiều công cụ phục vụ cho việc phát triển web, điển hình có thể kể đến như:
+
+-   Frameworks nổi bật như Django và Pyramid.
+-   Các thư viện như Flask và Bottle.
+-   Các hệ thống quản trị nội dung như Plone và django CMS.
+
+### Scientific and numeric
+
+       Việc triển khai các thuật toán học máy (Machine Learning) yêu cầu tính toán toán học vô cùng phức tạp. Rất may Python cung cấp cho chúng ta rất nhiều thư viện cho khoa học và số liệu như Numpy, Pandas, Scipy, Scikit-learning, v.v. Dưới đây là một vài thư viện phổ biến trong lĩnh vực này.
+
+-   SciPy
+-   Scikit-learn
+-   NumPy
+-   Pandas
+-   Matplotlib
+
+### Artificial Intelligence
+
+       Triển khai các dự án về AI liên quan đến hàng tấn thuật toán. Để tiết kiệm thời gian và công sức,chúng ta không cần phải code lại các thuật toán cũng như để cho mọi thứ dễ dàng hơn, Python cung cấp cho chúng ta hơn 100 thư viện được xây dựng sẵn để thực hiện các thuật toán khác nhau. Vì vậy, mỗi khi bạn muốn chạy một thuật toán trên một tập dữ liệu, tất cả những gì bạn phải làm là cài đặt và tải các thư viện cần thiết bằng một lệnh duy nhất. Ví dụ về các thư viện nổi bật trong lĩnh vực này như NumPy, Keras, Tensorflow, Pytorch, v.v.
+
+<center>
+
+![Object Detection sử dụng YOLOv3](D:/Books\Books of Quy\Book-of-Python-programming\AI.jpg)
+
+</center>
+
+## Cài đặt Python
+
+       Điều đầu tiên và quan trọng nhất, để có thể chạy được một chương trình Python trên máy tính của mình thì ta cần phải cài đặt môi trường có thể đọc và chạy được Python. Chúng ta vào trang chủ của Python thông qua GOOGLE và download bản cài đặt mới nhất của Python.
+
+<center>
+
+[Cài đặt Python](D:/Books\Books of Quy\Book-of-Python-programming\python2.jpg)
+
+</center>
+
+       Sau khi đã cài đặt xong môi trường Python cho máy tính của mình, bây giờ chúng ta đã có thể viết code Python ở bất cứ các Text Editor (trình soạn thảo văn bản) nào như Text Document hay Notepad, xịn hơn nữa các có thể dùng Sublime Text, VS Code,...
+
+       Nhưng để có thể phát triển cũng như viết chương trình Python một cách hiệu quả và nhanh chóng hơn, người ta thường sẽ lựa chọn các IDEs (môi trường phát triển tích hợp), Trong số các Python IDE đang có nhiều người dùng hiện nay có thể kể đến như PyCharm, Spyder, PyDev, Atom,... thì PyCharm có lẽ là IDE được ưa chuộng cũng như phổ biến nhất vì những tính năng hỗ trợ viết code mạnh mẽ, giao diện người dùng thân thiện,...
+
+       Truy cập vào trang chủ của JetBrains để tải về PyCharm phiên bản mới nhất. Sau khi tải về, chạy file .exe vừa tải được và bắt đầu quá trình cài đặt PyCharm
+
+<center>
+
+![Pycharm](D:/Books\Books of Quy\Book-of-Python-programming\pycharm.jpg)
+
+</center>
+
+# Nhập/xuất dữ liệu trong Python
+
+## Nhập/xuất dữ liệu
+
+### Lệnh print()
+
+       Chương trình đầu tiên trong Python chính là in ra dòng chữ Hello World, những ai khi bắt đầu học lập trình đều quen thuộc với nội dung này. Trong các ngôn ngữ lập trình thì nó luôn luôn tồn tại một hoặc nhiều hàm được cùng để hiển thị dữ liệu ra khi chương trình chạy. VD như trong C thì có `printf`, trong C++ thì có `cout`,... Và đối với python thì nó là `print`.
+
+       Để có thể in một nội dung ra màn hình trong Python chúng ta sử dụng lệnh print(). Nếu trong đó có nhiều hơn một nội dung thì chúng ta sử dụng dấu phẩy giữa các nội dung. Ngoài ra chúng ta có thể thêm tham số **sep** trong hàm print() để có thể thay đổi giá trị khoảng cách.
+
+```{python warning = FALSE}
+
+print ('Hello world!')
+print('Welcome', 'to', 'Python!')
+print('Welcome', 'to', 'Python!', sep ='--')
+```
+
+### Nhập dữ liệu từ bàn phím
+
+       Để nhập dữ liệu từ bàn phím trong Python, chúng ta sử dụng phương thức input(). Ví dụ chương trình sau, nhập một dãy ký tự và in ra màn hình
+
+```{python}
+#print("Mời bạn nhập vào nội dung gì đó: ")
+#x = input()
+#print("Nội dung bạn nhập vào là: ",x)
+```
+
+*Chú ý: Câu lệnh input() trả về một chuỗi ký tự, do đó nếu chúng ta muốn kết quả trẻ về là số nguyên thì ta cần ép kiểu như trên. Ví dụ: int("123") sẽ chuyển ký tự "123" thành số 123*
+
+       Trong Python, để chú thích một câu lệnh, chúng ta sử dụng dấu \# để chú thích một dòng code hoặc 3 dấu nháy """ để cho khối lệnh code.
+
+       Bài tập áp dụng: Nhập vào hai số nguyên a, b từ bàn phím. Viết chương trình in ra tích, tổng, hiệu và thương của hai số này.
+
+## Khai báo biến trong Python
+
+### Khái niệm về biến
+
+       Biến(variable) là đối tượng mà giá trị của nó có thể thay đổi được khi thực hiện chương trình. Mỗi biến cần được đặt tên và cần một lượng ô nhớ máy tính tương ứng để lưu giá trị cho biến. Trong Python mỗi biến chính là một con trỏ chỉ đến ô nhớ chứa giá trị đã được gán cho biến đó. Khác với các ngôn ngữ lập trình khác, Python không có lệnh khai báo biến mà chỉ có lệnh gán trực tiếp giá trị cho biến theo cách: tên biến = giá trị. Các ô nhớ trong máy tính được đánh địa chỉ bắt đầu từ số 0, để lấy được địa chỉ của ô nhớ, sử dụng phương thức **id(tên biến)**.
+
+```{python}
+# Gán giá trị cho biến x
+x = "Learning Python is interesting"
+print(x)
+#print("Địa chỉ ô nhớ của x là:", id(x))
+```
+
+       Chú ý: Cùng một chương trình, mỗi lần thực hiện, địa chỉ ô nhớ của biến có thể khác nhau, lý do là do cơ chế cấp phát bộ nhớ cho biến trong Python. Ví dụ: Khi gán x=123, máy tính sẽ sử dụng một ô nhớ nào đó trong bộ nhớ RAM (Random Access Memory) để lưu trữ giá trị 123 và biến x thành con trỏ chỉ tới ô nhớ chứa giá trị 123. Khi ta gán x=321, máy tính sẽ dùng một ô nhớ khác để lưu giá trị 321 và dùng x là con trỏ chỉ tới ô nhớ mới, ô nhớ chứa giá trị 123 khi này sẽ được giải phóng nếu không có biến nào chỉ tới nó.
+
+<center>
+
+![Cơ chế gán giá trị cho biến](D:/Books\Books of Quy\Book-of-Python-programming\vari1.png)
+
+</center>
+
+<center>
+
+![Cơ chế gán giá trị cho biến](D:/Books\Books of Quy\Book-of-Python-programming\vari2.png)
+
+</center>
+
+Trong trường hợp nhiều biến có cùng giá trị thì các biến này cùng chỉ tới một ô chứa giá trị đó.
+
+```{python}
+a = 123
+b = 123
+print(id(a))
+print(id(b))
+```
+
+### Đặt tên biến
+
+       Việc đặt tên biến được quy định bởi từng ngôn ngữ lập trình, trong Python được quy định như sau:
+
+1.  Biến có thể chứa các ký tự chữ và ký tự số
+2.  Không được chứa các ký tự trống và các ký tự đặc biệt như +,-,\*,/...
+3.  Tên biến không được bắt đầu bằng ký tự số
+4.  Không sử dụng các từ khóa, tên hàm đã được xây dựng trong Python
+5.  Nên đặt tên ngắn cho dễ nhớ
+
+Ví dụ:
+
+-   Tên đúng: x,y,x1,x2
+-   Tên sai: 1x, 2x, a b, de f.
+
+### Gán giá trị cho biến rút gọn
+
+       Python cung cấp cho người lập trình cách viết ngắn gọn các biểu thức gán giá trị, rất ngắn gọn và dễ sử dụng, xem bảng sau:
+
++-----------------------------+------------------+
+| Cách gán thông thường       | Cách gán rút gọn |
++=============================+==================+
+| a=2; b=2; c=2               | a=b=c=2          |
++-----------------------------+------------------+
+| a=1; b=2; c=3               | a,b,c=1,2,3      |
++-----------------------------+------------------+
+| Tráo đổi giá trị của a và b | a,b=b,a          |
+|                             |                  |
+| x=a; a=b; b=x               |                  |
++-----------------------------+------------------+
+
+: Cách gán giá trị rút gọn cho biến
+
+Trong python, để kiểm tra kiểu dữ liệu của một biến thì chúng ta có thể sử dụng hàm type với cú pháp như sau: **type(biến cần kiểm tra)**
+
+## Kiểu dữ liệu số
+
+### Các dạng dữ liệu số
+
+Ngôn ngữ lập trình Python hỗ trợ 3 kiểu dữ liệu về số, đó là:
+
+-   Số nguyên - int
+-   Số thực - float
+-   Số phức - complex
+
+#### Kiểu số nguyên - int
+
+Python cho phép thực hiện các phép toán cơ bản với kiểu số nguyên và ngoài ra còn cho phép tính toán với các số nguyên có giá trị rất lớn
+
+```{python}
+a=2020
+n=50
+s=a**n
+print(s)
+```
+
+| Phép toán       | Ký hiệu | Ví dụ     |
+|-----------------|---------|-----------|
+| Cộng            | \+      | 5+2=7     |
+| Trừ             | \-      | 5-2+3     |
+| Nhân            | \*      | 5\*2=10   |
+| Lũy thừa        | \*\*    | 5\*\*2=25 |
+| Chia            | /       | 5/2=2.5   |
+| Chia lấy thương | //      | 5//2=2    |
+| Chia lấy dư     | \%      | 5%2=1     |
+
+#### Kiểu số thực - float
+
+Xét chương trình tính diện tích hình tròn
+
+```{python}
+pi = 3.14
+r = 2
+s = pi*r*r
+print("Dien tich hinh tron la:", s)
+```
+
+Các phép toán thực hiện trên số thực cũng giống như các phép toán thực hiện trên kiểu số nguyên. Trong Python cho phép viết các số thực dưới dạng kí pháp khoa học của nó, chẳng hạn như $3.0*10^{3}$ có thể viết là $3.0e-3$
+
+#### Kiểu số phức - complex
+
+Một số phức là một số có dạng $a+bj$. Trong đó a, b là các số thực; a được gọi là phần thực và b được gọi là phần ảo
+
+```{python}
+x = 2 + 1j
+y = 3 - 2j
+print("Tong bang: ", x+y)
+print("Hieu bang: ", x-y)
+print("Tich bang: ", x*y)
+z = complex(1,2)
+t = complex(2)
+print(z)
+print(t)
+```
+
+#### Hàm tạo số ngẫu nhiên
+
+Python cung cấp mô-đun **random** cho phép sinh các số ngẫu nhiên cả về số nguyên và số thực.
+
+-   Hàm **randint(a,b)** tạo ngẫu nhiên một số nguyên thuộc [a,b]
+-   Hàm **uniform(a,b)** tạo ngẫu nhiên một số thực [a,b].
+
+Để sử dụng hai câu lệnh này, chúng ta cần import chúng từ mô-đun **random** bằng lệnh **from random import randint, uniform**
+
+```{python}
+from random import randint, uniform
+x = randint(-10, 10)
+y = uniform(-100, 100)
+print("So x duoc tao ngau nhien la: ", x)
+print("So y duoc tao ngau nhien la: ", y)
+```
+
+Một số hàm toán học thông dụng khác có thể xem tại bảng sau:
+
+| **Tên hàm**                | **Thực hiện**                           |
+|----------------------------|-----------------------------------------|
+| $sin(x)$                   | Tính sin của một góc có số đo x(rad)    |
+| $cos(x)$                   | Tính cô sin của một góc có số đo x(rad) |
+| $tan(x)$                   | Tính tang của một góc có số đo x(rad)   |
+| $sqrt(x)$                  | Tính căn bậc hai của x                  |
+| $trunc(x)$                 | Tính phần nguyên của x                  |
+| $pi$                       | Số pi                                   |
+| $round(x, n)$              | Làm tròn x đến n chữ số thập phân       |
+| $abs(x)$                   | Tính giá trị tuyệt đối của x            |
+| $max(a_{1},a_{2},…,a_{n})$ | Trả về giá trị lớn nhất                 |
+| $min(a_{1},a_{2},…,a_{n})$ | Trả về giá trị nhỏ nhất                 |
+
+> Để import tất cả các hàm trong mô-đun math, ta thực hiện: from math import \*
+
+Các bài tập áp dụng:
+
+1.  Bài 1: Nhập số nguyên dương N có 3 chữ số. Tính tổng các chữ số của N
+2.  Bài 2: Nhập vào 3 số nguyên dương a,b,c. Hãy tìm ước chung lớn nhất của 3 số này (GCD - Greatest Common Divisor)
+
+# Cấu trúc rẽ nhánh
+
+## Câu lệnh If
+
+Cú pháp của lệnh if như sau: Nếu điều kiện đúng thì sẽ thực hiện khối lệnh.
+
+<center>
+
+![Câu lệnh if](D:/Books\Books of Quy\Book-of-Python-programming\ifstatement.jpg)
+
+</center>
+
+```{python}
+a = 10
+b = 20
+if a < b:
+  print("a nho hon b")
+  print("Tong a va b la: ", a + b)
+```
+
+```{python}
+a = 30
+b = 20
+if a < b:
+  print("a nho hon b")
+  print("Tong a va b la: ", a + b)
+  
+print("Vi tri ngoai khoi lenh tren!")
+```
+
+       **Khái niệm về khối lệnh - codeblock**: Khối lệnh trong Python được định nghĩa là một nhóm các lệnh liên tiếp nhau và được viết thẳng cột với nhau. Các câu lệnh này được gọi là đồng mức (same level).
+
+## Câu lệnh if-else
+
+       Trong câu lệnh này, nếu điều kiện là đúng thì thực hiện khối lệnh 1, còn ngược lại (điều kiện sai) thì thực hiện khối lệnh 2. Sơ đồ thực hiện như sau:
+
+<center>
+
+![Câu lệnh if-else](D:/Books\Books of Quy\Book-of-Python-programming\ifelsestatement.jpg)
+
+</center>
+
+```{python}
+a = 20
+b = 20
+if a == b: 
+  print("a bang b")
+else:
+  print("a khong bang b")
+```
+
+## Câu lệnh if-elif
+
+Nếu điều kiện 1 đúng thì thực hiện khối lệnh 1, ngược lại nếu điều kiện 2 đúng thì thực hiện khối lệnh 2.
+
+<center>
+
+![Câu lệnh elif](D:/Books\Books of Quy\Book-of-Python-programming\elifstatement.jpg)
+
+</center>
+
+```{python}
+a = 200
+b = 50
+if a==b:
+  print("a bang b")
+elif a<b:
+  print("a nho hon b")
+else:
+  print("a lon hon b")
+```
+
+Các phép toán logic.
+
+|       |       |           |             |            |
+|-------|-------|-----------|-------------|------------|
+| a     | b     | **not** a | a **and** b | a **or** b |
+| TRUE  | TRUE  | FALSE     | TRUE        | TRUE       |
+| TRUE  | FALSE | FALSE     | FALSE       | TRUE       |
+| FALSE | TRUE  | TRUE      | FALSE       | TRUE       |
+| FALSE | FALSE | TRUE      | FALSE       | FALSE      |
+
+Ví dụ: Kiểm tra điều kiện ba số dương có là ba cạnh của một tam giác hay không.
+
+```{python}
+a = 10
+b = 20
+c = 15
+if (a+b>c) and (b+c>a) and (c+a>b):
+  print("a,b,c la ba canh cua mot tam giac")
+else:
+  print("a,b,c khong phai la ba canh cua mot tam giac")
+```
+
+**Chú ý:** Các phép toán lô gic có thứ tự ưu tiên thực hiện thấp hơn so với các phép toán số học và phép toán so sánh. Do đó trong biểu thức so sánh trong biểu thức điều kiện trên, ta có thể viết:
+
+if(a+b\>c) and (b+c\>a) and (a+c\>b) có thể viết được là if a+b\>c and b+c\>a and a+c\>b
+
+Các bài tập áp dụng:
+
+**Bài 1:** Nhập vào 3 số a,b,c (a\#0). Giải phương trình bậc hai $ax^{2}+bx+c=0$ .
+
+**Bài 2:** Nhập vào ba số a,b,c nguyên dương. Kiểm tra xem a,b,c có phải ba cạnh của một tam giác hay không? Nếu là ba cạnh của một tam giác hãy phân loại xem tam giác có 3 cạnh a,b,c đó thuộc loại nào dưới đây: 1. Tam giác đều; 2. Tam giác vuông; 3. Tam giác thường.
+
+**Bài 3:** Giao đoạn - Nhập vào bốn số a,b,c,d (a\<b,c\<d). Tính xem có bao nhiêu số nguyên thuộc đoạn giao [a;b] và [c;d].
+
+**Bài 4:** Giao hai hình chữ nhật - Cho hai hình chữ nhật có cạnh song song hoặc trùng với các trục tọa độ. Hình chữ nhật thứ nhất được xác định bởi điểm trái dưới $A(x_{A}, y_{A})$ và điểm bên phải trên $B(x_{B}, y_{B})$. Hình chữ nhật thứ hai được xác định bởi điểm trái dưới $C(x_{C}, y_{C})$ và điểm phải trên $D(x_{D}, y_{D})$. Xét xem hai hình chữ nhật có giao nhau hay không? Nếu giao nhau (có điểm trong chung) thì tính diện tích phần giao nhau.
+
+Bài 5: Xếp loại học sinh Cho điểm thi Toán, Lý, Hóa , Tin của học sinh. Hãy xếp loại kết quả của học sinh theo tiêu chí
+
+| Điểm trung bình | Xếp loại   |
+|-----------------|------------|
+| ĐTB\>=9         | Xuất sắc   |
+| 8\<=ĐTB\<9      | Giỏi       |
+| 7\<=ĐTB\<8      | Khá        |
+| 5\<=ĐTB\<7      | Trung bình |
+| ĐTB\<5          | Yếu        |
+
+# Cấu trúc lặp
+## Định nghĩa công việc lặp
+       Trong quá trình thực hiện một công việc nào đó, chúng ta sẽ bắt gặp những quá trình mà các công việc được thực hiện giống nhau lặp đi lắp lại. Các công việc đó có thể là giống nhau hoặc chỉ khác nhau về giá trị tính toán. Thường có hai loại lặp đó là:
+
+  - Lặp với số lần lặp xác định trước
+  - Lặp với số lần lặp chưa được xác định trước
+
+## Vòng lặp for
+Cấu trúc của vòng lặp for trong Python như sau:
+```{python}
+# for bien_lap in chuoi_lap:
+# <Khoi lenh for>
+```
+
+       Trong cú pháp trên, chuoi_lap là chuỗi cần lặp, bien_lap là biến nhận giá trị của từng mục bên trong chuoi_lap trên mỗi lần lặp. Vòng lặp sẽ tiếp tục cho đến khi nó lặp tới mục cuối cùng trong chuỗi.
+
+       Khối lệnh của for được thụt lề để phân biệt với phần còn lại của code.
+```{python}
+#Lap ky tu trong chuoi ICTU
+for chu in 'ICTU':
+    print('Chu cai hien tai la:', chu)
+
+#Lap tu trong mot chuoi
+chuoi = ['ICTU','vi','yeu', 'ma', 'den']
+for tu in chuoi:
+    print('Toi yeu', tu)
+```
+
+### Hàm range
+       Chúng ta có thể sử dụng hàm range() để tạo ra một dãy số. Ví dụ, range(100) sẽ tạo một dãy số từ 0 đến 99 (100 số). Hàm range(số bắt đầu, số kết thúc, khoảng cách giữa hai số) được sử dụng để tạo dãy số tùy chỉnh. Nếu không đặt khoảng cách giữa hai số thì Python sẽ hiểu mặc định nó bằng 1.
+
+        Ví dụ: Viết 10 lần "Anh xin lỗi", ta sẽ cho biến i lặp từ 0 đến 10 như dưới đây:
+```{python}
+for i in range(10):
+    print ("Anh xin loi em!")
+print("Em oi, anh chep xong 10 lan roi!")
+```
+       Hàm range() không lưu tất cả các giá trị trong bộ nhớ mà nó lưu giá trị bắt đầu, giá trị kết thúc và khoảng cách giữa hai số từ đó tạo ra số tiếp theo trong dãy.
+       Hàm range() trả về một biến chứa một dãy các giá trị nằm trong một khoảng xác định theo quy luật. Hàm này có 3 dạng:
+
+  - range(stop): nhận 1 tham số là giá trị cuối của dãy và trả về dãy số [0, stop – 1]. Ví dụ range(5) sẽ trả lại dãy số 0, 1, 2, 3, 4. Bước nhảy giữa các giá trị kế tiếp là 1.
+
+  - range(start, stop): nhận 2 tham số là giá trị đầu và cuối của dãy, trả về dãy [start, stop-1]. Ví dụ, range(1, 5) sẽ trả lại dãy số 1, 2, 3, 4 (bước nhảy giữa các giá trị kế tiếp là 1).
+
+  - range(start, stop, step): tương tự như trường hợp 2 nhưng bước nhảy được xác định bởi biến step. Ví dụ, range(1, 10, 2) sẽ trả lại dãy 1, 3, 5, 7, 9 (bước nhảy giữa các giá trị kế tiếp là 2).
+
+Trong hàm range, start, stop và step có thể nhận cả giá trị âm và dương:
+
+-   Nếu step nhận giá trị âm (và start > stop) sẽ tạo ra dãy giảm dần. Ví dụ range(0, -5, -1) sẽ tạo ra dãy 0, -1, -2, -3, -4.
+
+-   Nếu stop < start và step dương, hoặc stop > start và step âm, sẽ tạo ra chuỗi trống (không có giá trị nào). Ví dụ, range(2, -3, 1) và range(2, 3, -1) đều không tạo ra phần tử nào.
+
+### Sử dụng vòng lặp for kết hợp
+
+```{python}
+companies = ['Apple', 'Google', 'Microsoft', 'Huawei', 'Yandex', 'Facebook']
+for c in companies:
+	print(c)
+```
+
+       Trong ví dụ trên, companies là một biến kiểu danh sách (list). Kiểu dữ liệu này chúng ta chưa học nhưng bạn có thể hình dung nó tương tự như kiểu mảng của C. Biến kiểu list cũng có thể trở thành danh sách dữ liệu cho vòng lặp for. Khi này biến chạy c sẽ lần lượt nhận các giá trị trong danh sách theo thứ tự.
+
+```{python}
+total = 0
+for num in (-22.0, 3.5, 8.1, -10, 0.5):
+    if num > 0:
+        total = total + num
+```
+
+Trong ví dụ này chúng tính tổng các số dương từ một tuple. Tuple cũng là một kiểu dữ liệu tập hợp mà chúng ta sẽ học chi tiết sau.
+
+## Cấu trúc lặp while
+Xét ví dụ sau:
+```{python}
+"""
+word = ''
+while(word.lower() != 'close'):
+	word = input('Enter a word: ')
+	print(f'You have typed "{word}"') """
+```
+
+       Trong ví dụ này chúng ta liên tục yêu cầu người dùng nhập vào một từ. Nếu người dùng nhập từ ‘close’ thì sẽ kết thúc vòng lặp (và kết thúc chương trình). Nếu người dùng nhập từ khác thì sẽ yêu cầu nhập lại. Chúng ta không biết khi nào người dùng sẽ nhập ‘close’, và cũng có thể là không bao giờ. Vì vậy, vòng lặp while được gọi là vòng lặp với số bước không xác định trước.
+
+       Biến word đóng vai trò là biến điều khiển cho biểu thức điều kiện
+
+```{python}
+sum = 0
+i = 1
+while i < 100:
+	sum += i
+	i += 1
+print(sum)
+```
+       Trong ví dụ này chúng ta tính tổng các số từ 1 đến 99. Để thực hiện việc này chúng ta sử dụng một biến i với vai trò biến đếm. Biến i ban đầu nhận giá trị 1. Qua mỗi vòng lặp i sẽ tăng thêm 1 đơn vị, và biến sum sẽ cộng thêm giá trị bằng i. Quá trình này sẽ lặp đi lặp lại chừng nào i vẫn nhỏ hơn 100. Đến khi i đạt giá trị 100 thì vòng lặp kết thúc.
+
+       Cấu trúc while của Python là một lệnh phức hợp với một mệnh đề. Trong đó, header là while <biểu thức logic>:. Biểu thức logic là loại biểu thức mà kết quả trả về thuộc kiểu bool (giá trị True hoặc False). Trong các ví dụ trên, biểu thức logic là i < 100 và char.lower() != 'close'.
+
+       Chừng nào biểu thức logic còn nhận giá trị True thì sẽ thực hiện danh sách lệnh ở phần tiếp. Để tránh tạo thành vòng lặp vô tận, bên trong danh sách lệnh của vòng lặp while phải có lệnh có tác dụng làm thay đổi giá trị của biểu thức logic.
+
+       Trong ví dụ thứ nhất, chúng ta liên tục yêu cầu người dùng nhập vào giá trị mới cho biến char. Điều này đảm bảo khả năng thoát khỏi vòng lặp.
+
+       Trong ví dụ thứ hai, chúng ta làm biến đổi giá trị của i qua mỗi vòng lặp (tăng thêm 1 đơn vị). Điều này đảm bảo đến một lúc nào đó i sẽ có giá trị lớn hơn 100 và kết thúc vòng lặp.
+
+## Điều khiển vòng lặp, break và continue
+      Khi làm việc với vòng lặp có thể xuất hiện hai tình huống:
+
+  (1) Bạn muốn kết thúc vòng lặp sớm hơn dự định hoặc theo điều kiện. Lấy ví dụ, bạn cầm một danh sách khách hàng và muốn tìm tên một khách trong đó. Bạn xem lần lượt từng tên từ đầu danh sách. Nếu gặp tên khách hàng cần tìm, bạn sẽ dừng lại chứ không tiếp tục xem đến hết danh sách nữa. Ở đây bạn phá vỡ hoàn toàn vòng lặp.
+
+  (2) Bạn muốn bỏ qua một chu kỳ trong vòng lặp để bắt đầu chu kỳ tiếp theo. Lấy ví dụ, bạn dự định chơi 10 ván bài. Ở ván thứ 3 bài xấu quá, bạn quyết định bỏ cuộc để chờ chơi ván tiếp theo. Ở đây bạn không dừng hoàn toàn vòng lặp mà chỉ bỏ không làm những việc nhẽ ra phải làm trong chu kỳ đó và khởi động một chu kỳ mới.
+
+       Hai tình huống này được Python giải quyết bằng hai lệnh tương ứng: break (phá vỡ vòng lặp, kết thúc sớm) và continue (bỏ qua chu kỳ hiện tại, bắt đầu một chu kỳ lặp mới). Cả hai loại vòng lặp (for, while) đều có thể sử dụng break và continue.
+
+       Ví dụ với break:
+
+```{python}
+# breaking out of a loop early
+for item in [1, 2, 3, 4, 5]:
+    if item == 3:
+        print(item, " ...break!")
+        break
+    print(item, " ...next iteration")
+```
+
+       Câu lệnh **continue** được viết trong khối lệnh của các vòng lặp. Khi thực hiện câu lệnh **continue**, các câu lệnh phía sau trong khối lệnh sẽ không được thực hiện mà sẽ quay lại lần lặp tiếp theo
+
+```{python}
+for x in 1,2,3,4,5:
+  if(x%2 == 0):
+    continue
+  print("x= ", x, "la so le")
+  
+for x in 1,2,3,4,5:
+  if(x == 4):
+    break
+  print("x= ", x)
+  
+```
+
+```{python}
+for x in range(3):
+  for y in range(5):
+    if y == 2:
+      break
+    print("x, y:",x,y,sep=' ')
+```
+
+## Bài tập áp dụng for, while
+Hãy sử dụng cấu trúc lặp for và while thực hiện các bài toán sau:
+
+ **Bài 1.** Cho một số tự nhiên $n(n\leq{10^{1000}})$. Tính tổng các chữ số của $n$. Ví dụ: $n=123$, tổng các chữ số bằng $1+2+3=6$
+ 
+ **Bài 2.** Chữ số lớn nhất và chữ số nhỏ nhất.
+        Cho một số tự nhiên $n(n\leq{10^{1000}})$. Tìm chữ số lớn nhất và chữ số nhỏ nhất của $n$. Ví dụ $n=123$, chữ số lớn nhất bằng 3, chữ số nhỏ nhất bằng 1. 
+        
+  **Bài 3.** Cho hai số nguyên dương a và b. Sử dụng thuật toán Euclid tìm ước chung lớn nhất và bội số chung nhỏ nhất của a và b.
+  
+  **Bài 4.** Kiểm tra số nguyên tố - Cho một số tự nhiên N nhập vào từ bàn phím, hãy kiểm tra xem N có phải là một số nguyên tố hay không?
+  
+  **Bài 5.** Số hoàn hảo - Một số tự nhiên N được gọi là một số hoàn hảo nếu tổng các ước dương của nó bằng 2N. Ví dụ: N=6 có các ước dương là 1,2,3,6. Tổng bằng 2*6=12. Như vậy 6 là một số hoàn hảo. Hãy nhập vào một đoạn [a;b]. Kiểm tra xem có bao nhiêu số hoàn hảo nằm trong khoảng này.
+  
+  **Bài 6.** Số lũy thừa dạng 2-3: Một số tự nhiên N được gọi là có dạng lũy thừa 2-3 nếu N có dạng: $N=2^{x}3^{y}$. Ví dụ: 2,3,6,12... là các số lũy thừa 2-3. Nhập vào một số tự nhiên N từ bàn phím, kiểm tra xem N có phải là lũy thừa 2-3 không?
+
+
+

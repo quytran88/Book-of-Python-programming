@@ -1,0 +1,9 @@
+@page {
+  size: 6in 9in;
+  margin: 3pc 3pc 6pc 3pc;
+}
+
+/* page breaks */
+div.abstract {
+  page-break-before: always;
+}

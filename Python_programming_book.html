@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width">
+<meta property="og:title" content="Lập trình Python" />
+
+
+
+
+
+
+<meta name="description" content="Lập trình Python">
+
+<script id="pandoc-meta" type="application/json">
+{"newpage_html_class":"page-break-after","date":"July 2021","output":{"pagedown::html_paged":{"self_contained":"no","toc":"yes","css":["default-fonts","default-page","default","crc","crc-page"]}},"author":[{"name":"TS. TRẦN QUANG QUÝ (<a href=\"mailto:tqquy@ictu.edu.vn\" class=\"email\">tqquy@ictu.edu.vn</a>)","affiliation":"Trường Đại học Công nghệ Thông tin &amp; Truyền thông Thái Nguyên."}],"title":"Lập trình Python"}
+</script>
+
+<title>Lập trình Python</title>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function() {
+  // Retrieve previous config object if defined
+  window.PagedConfig = window.PagedConfig || {};
+  let beforePaged = PagedConfig.before;
+  window.PagedConfig.before = async () => {
+    if (beforePaged) await beforePaged();
+    return new Promise((resolve, reject) => {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      var src = `https://mathjax.rstudio.com/latest/MathJax.js` + "?config=TeX-MML-AM_CHTML";
+      if (location.protocol !== "file:" && /^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+      script.src = src;
+      window.MathJax = {
+        AuthorInit: () => {
+          MathJax.Hub.Register.StartupHook("Begin", () => {
+            MathJax.Hub.Queue(resolve);
+          });
+        }
+      };
+      document.getElementsByTagName("head")[0].appendChild(script);
+    });
+  };
+})();
+</script>
+
+<script src="Python_programming_book_files/header-attrs-2.9/header-attrs.js"></script>
+<link href="Python_programming_book_files/paged-0.15/css/default-fonts.css" rel="stylesheet" />
+<link href="Python_programming_book_files/paged-0.15/css/default-page.css" rel="stylesheet" />
+<link href="Python_programming_book_files/paged-0.15/css/default.css" rel="stylesheet" />
+<link href="Python_programming_book_files/paged-0.15/css/crc.css" rel="stylesheet" />
+<link href="Python_programming_book_files/paged-0.15/css/crc-page.css" rel="stylesheet" />
+<script src="Python_programming_book_files/paged-0.15/js/config.js"></script>
+<script src="Python_programming_book_files/paged-0.15/js/paged.js"></script>
+<script src="Python_programming_book_files/paged-0.15/js/hooks.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+
+</head>
+
+<body>
+
+<div class="running-h1-title"></div>
+
+<div class="running-h2-title"></div>
+
+
+
+<div class="front-page">
+<div id="header" class="title-page">
+<h1 class="title">Lập trình Python</h1>
+<h2 class="author">TS. TRẦN QUANG QUÝ (<a href="mailto:tqquy@ictu.edu.vn" class="email">tqquy@ictu.edu.vn</a>)</h2>
+<address class="author-afil">
+Trường Đại học Công nghệ Thông tin &amp; Truyền thông Thái Nguyên.<br/><h2 class="date">July 2021</h2>
+</div>
+</div>
+
+<div class="front-matter-container">
+<div id="TOC" class="level1 toc front-matter">
+<ul>
+<li><a href="#ngôn-ngữ-python"><span class="toc-section-number">1</span> Ngôn ngữ Python</a>
+<ul>
+<li><a href="#giới-thiệu-về-ngôn-ngữ-python"><span class="toc-section-number">1.1</span> Giới thiệu về ngôn ngữ Python</a></li>
+<li><a href="#các-phiên-bản-của-python"><span class="toc-section-number">1.2</span> Các phiên bản của Python</a></li>
+<li><a href="#các-lĩnh-vực-sử-dụng-python"><span class="toc-section-number">1.3</span> Các lĩnh vực sử dụng Python</a>
+<ul>
+<li><a href="#web-and-internet-development"><span class="toc-section-number">1.3.1</span> Web and internet development</a></li>
+<li><a href="#scientific-and-numeric"><span class="toc-section-number">1.3.2</span> Scientific and numeric</a></li>
+<li><a href="#artificial-intelligence"><span class="toc-section-number">1.3.3</span> Artificial Intelligence</a></li>
+</ul></li>
+<li><a href="#cài-đặt-python"><span class="toc-section-number">1.4</span> Cài đặt Python</a></li>
+</ul></li>
+<li><a href="#nhậpxuất-dữ-liệu-trong-python"><span class="toc-section-number">2</span> Nhập/xuất dữ liệu trong Python</a>
+<ul>
+<li><a href="#nhậpxuất-dữ-liệu"><span class="toc-section-number">2.1</span> Nhập/xuất dữ liệu</a>
+<ul>
+<li><a href="#lệnh-print"><span class="toc-section-number">2.1.1</span> Lệnh print()</a></li>
+<li><a href="#nhập-dữ-liệu-từ-bàn-phím"><span class="toc-section-number">2.1.2</span> Nhập dữ liệu từ bàn phím</a></li>
+</ul></li>
+<li><a href="#khai-báo-biến-trong-python"><span class="toc-section-number">2.2</span> Khai báo biến trong Python</a>
+<ul>
+<li><a href="#khái-niệm-về-biến"><span class="toc-section-number">2.2.1</span> Khái niệm về biến</a></li>
+<li><a href="#đặt-tên-biến"><span class="toc-section-number">2.2.2</span> Đặt tên biến</a></li>
+<li><a href="#gán-giá-trị-cho-biến-rút-gọn"><span class="toc-section-number">2.2.3</span> Gán giá trị cho biến rút gọn</a></li>
+</ul></li>
+<li><a href="#kiểu-dữ-liệu-số"><span class="toc-section-number">2.3</span> Kiểu dữ liệu số</a>
+<ul>
+<li><a href="#các-dạng-dữ-liệu-số"><span class="toc-section-number">2.3.1</span> Các dạng dữ liệu số</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#cấu-trúc-rẽ-nhánh"><span class="toc-section-number">3</span> Cấu trúc rẽ nhánh</a>
+<ul>
+<li><a href="#câu-lệnh-if"><span class="toc-section-number">3.1</span> Câu lệnh If</a></li>
+<li><a href="#câu-lệnh-if-else"><span class="toc-section-number">3.2</span> Câu lệnh if-else</a></li>
+<li><a href="#câu-lệnh-if-elif"><span class="toc-section-number">3.3</span> Câu lệnh if-elif</a></li>
+</ul></li>
+<li><a href="#cấu-trúc-lặp"><span class="toc-section-number">4</span> Cấu trúc lặp</a>
+<ul>
+<li><a href="#định-nghĩa-công-việc-lặp"><span class="toc-section-number">4.1</span> Định nghĩa công việc lặp</a></li>
+<li><a href="#vòng-lặp-for"><span class="toc-section-number">4.2</span> Vòng lặp for</a>
+<ul>
+<li><a href="#hàm-range"><span class="toc-section-number">4.2.1</span> Hàm range</a></li>
+<li><a href="#sử-dụng-vòng-lặp-for-kết-hợp"><span class="toc-section-number">4.2.2</span> Sử dụng vòng lặp for kết hợp</a></li>
+</ul></li>
+<li><a href="#cấu-trúc-lặp-while"><span class="toc-section-number">4.3</span> Cấu trúc lặp while</a></li>
+<li><a href="#điều-khiển-vòng-lặp-break-và-continue"><span class="toc-section-number">4.4</span> Điều khiển vòng lặp, break và continue</a></li>
+<li><a href="#bài-tập-áp-dụng-for-while"><span class="toc-section-number">4.5</span> Bài tập áp dụng for, while</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div class="main">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#conda_create(&quot;r-reticulate&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#use_condaenv(&quot;r-reticulate&quot;)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#py_config()</span></span></code></pre></div>
+<div id="ngôn-ngữ-python" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Ngôn ngữ Python</h1>
+<div id="giới-thiệu-về-ngôn-ngữ-python" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Giới thiệu về ngôn ngữ Python</h2>
+<p>       Python là ngôn ngữ lập trình cấp cao, đa mục đích được sử dụng rộng rãi. Ban đầu được thiết kế bởi Guido van Rossum vào năm 1991 và được duy trì, phát triển bởi tổ chức Python Software Foundation.</p>
+<p>       Guido Van Rossum bắt đầu nghiên cứu các sản phẩm dựa trên ứng dụng của mình vào tháng 12 năm 1989 ở Centrum Wiskunde &amp; Informatica (CWI). Tại đây Guido van Rossum có cơ hội được tiếp xúc với ngôn ngữ lập trình ABC, trong quá trình làm việc ông đã nhận thấy ABC có rất nhiều vấn đề , tuy nhiên ông vẫn ưa chuộng những tính năng mà ABC mang lại.</p>
+<p>       Bằng sự sáng tạo và sự trợ giúp từ các cộng sự, ông đã kết hợp cú pháp của ngôn ngữ ABC và một số tính năng của nó để tạo ra ngôn ngữ lập trình mới. Cái tên được lấy cảm hứng từ một chương trình truyền hình BBC – Monty Python, Flying Circus Circus mà ông rất hâm mộ. Thêm vào đó, với ý muốn đặt một cái tên ngắn, độc đáo và hơi bí ẩn cho phát minh của mình, Guido đặt tên cho ngôn ngữ này là Python!</p>
+<center>
+<div class="figure">
+<img src="python.png" alt="" />
+<p class="caption">Ngôn ngữ Python</p>
+</div>
+</center>
+<p>       Python hoàn toàn tạo kiểu động và dùng cơ chế cấp phát bộ nhớ tự động; do vậy nó tương tự như Perl, Ruby, Scheme, Smalltalk, và Tcl. Python được phát triển trong một dự án mã mở, do tổ chức phi lợi nhuận Python Software Foundation quản lý.</p>
+<p>       Ban đầu, Python được phát triển để chạy trên nền Unix. Nhưng rồi theo thời gian, Python dần mở rộng sang mọi hệ điều hành từ MS-DOS đến Mac OS, OS/2, Windows, Linux và các hệ điều hành khác thuộc họ Unix. Mặc dù sự phát triển của Python có sự đóng góp của rất nhiều cá nhân, nhưng Guido van Rossum hiện nay vẫn là tác giả chủ yếu của Python. Ông giữ vai trò chủ chốt trong việc quyết định hướng phát triển của Python.</p>
+<center>
+<div class="figure">
+<img src="Guido_van_Rossum_OSCON_2006.jpg" alt="" />
+<p class="caption">Guido van Rossum</p>
+</div>
+</center>
+</div>
+<div id="các-phiên-bản-của-python" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Các phiên bản của Python</h2>
+<p>Sự phát triển Python đến nay có thể chia làm các giai đoạn:</p>
+<ul>
+<li><em>Python 1:</em> bao gồm các bản phát hành 1.x. Giai đoạn này, kéo dài từ đầu đến cuối thập niên 1990. Từ năm 1990 đến 1995, Guido làm việc tại CWI (Centrum voor Wiskunde en Informatica - Trung tâm Toán-Tin học tại Amsterdam, Hà Lan). Vì vậy, các phiên bản Python đầu tiên đều do CWI phát hành. Phiên bản cuối cùng phát hành tại CWI là 1.2.</li>
+<li><em>Python 2:</em> vào năm 2000, Guido và nhóm phát triển Python dời đến BeOpen.com và thành lập BeOpen PythonLabs team. Phiên bản Python 2.0 được phát hành tại đây. Sau khi phát hành Python 2.0, Guido và các thành viên PythonLabs gia nhập Digital Creations.</li>
+<li><em>Python 3</em> còn gọi là Python 3000 hoặc Py3K: Dòng 3.x sẽ không hoàn toàn tương thích với dòng 2.x, tuy vậy có công cụ hỗ trợ chuyển đổi từ các phiên bản 2.x sang 3.x. Nguyên tắc chủ đạo để phát triển Python 3.x là “bỏ cách làm việc cũ nhằm hạn chế trùng lặp về mặt chức năng của Python”.</li>
+</ul>
+</div>
+<div id="các-lĩnh-vực-sử-dụng-python" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Các lĩnh vực sử dụng Python</h2>
+<p>       Các đặc trưng của Python giúp cho Python được sử dụng rộng rãi, phổ biến trong cộng đồng lập trình. Có đến hàng hàng ngàn thư viện hỗ trợ ngôn ngữ lập trình Python với mục tiêu nhất định</p>
+<div id="web-and-internet-development" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Web and internet development</h3>
+<p>       Python cung cấp cho người dùng chúng ta rất nhiều công cụ phục vụ cho việc phát triển web, điển hình có thể kể đến như:</p>
+<ul>
+<li>Frameworks nổi bật như Django và Pyramid.</li>
+<li>Các thư viện như Flask và Bottle.</li>
+<li>Các hệ thống quản trị nội dung như Plone và django CMS.</li>
+</ul>
+</div>
+<div id="scientific-and-numeric" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Scientific and numeric</h3>
+<p>       Việc triển khai các thuật toán học máy (Machine Learning) yêu cầu tính toán toán học vô cùng phức tạp. Rất may Python cung cấp cho chúng ta rất nhiều thư viện cho khoa học và số liệu như Numpy, Pandas, Scipy, Scikit-learning, v.v. Dưới đây là một vài thư viện phổ biến trong lĩnh vực này.</p>
+<ul>
+<li>SciPy</li>
+<li>Scikit-learn</li>
+<li>NumPy</li>
+<li>Pandas</li>
+<li>Matplotlib</li>
+</ul>
+</div>
+<div id="artificial-intelligence" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Artificial Intelligence</h3>
+<p>       Triển khai các dự án về AI liên quan đến hàng tấn thuật toán. Để tiết kiệm thời gian và công sức,chúng ta không cần phải code lại các thuật toán cũng như để cho mọi thứ dễ dàng hơn, Python cung cấp cho chúng ta hơn 100 thư viện được xây dựng sẵn để thực hiện các thuật toán khác nhau. Vì vậy, mỗi khi bạn muốn chạy một thuật toán trên một tập dữ liệu, tất cả những gì bạn phải làm là cài đặt và tải các thư viện cần thiết bằng một lệnh duy nhất. Ví dụ về các thư viện nổi bật trong lĩnh vực này như NumPy, Keras, Tensorflow, Pytorch, v.v.</p>
+<center>
+<div class="figure">
+<img src="AI.jpg" alt="" />
+<p class="caption">Object Detection sử dụng YOLOv3</p>
+</div>
+</center>
+</div>
+</div>
+<div id="cài-đặt-python" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Cài đặt Python</h2>
+<p>       Điều đầu tiên và quan trọng nhất, để có thể chạy được một chương trình Python trên máy tính của mình thì ta cần phải cài đặt môi trường có thể đọc và chạy được Python. Chúng ta vào trang chủ của Python thông qua GOOGLE và download bản cài đặt mới nhất của Python.</p>
+<center>
+<p><a href="D:/Books\Books%20of%20Quy\Book-of-Python-programming\python2.jpg">Cài đặt Python</a></p>
+</center>
+<p>       Sau khi đã cài đặt xong môi trường Python cho máy tính của mình, bây giờ chúng ta đã có thể viết code Python ở bất cứ các Text Editor (trình soạn thảo văn bản) nào như Text Document hay Notepad, xịn hơn nữa các có thể dùng Sublime Text, VS Code,…</p>
+<p>       Nhưng để có thể phát triển cũng như viết chương trình Python một cách hiệu quả và nhanh chóng hơn, người ta thường sẽ lựa chọn các IDEs (môi trường phát triển tích hợp), Trong số các Python IDE đang có nhiều người dùng hiện nay có thể kể đến như PyCharm, Spyder, PyDev, Atom,… thì PyCharm có lẽ là IDE được ưa chuộng cũng như phổ biến nhất vì những tính năng hỗ trợ viết code mạnh mẽ, giao diện người dùng thân thiện,…</p>
+<p>       Truy cập vào trang chủ của JetBrains để tải về PyCharm phiên bản mới nhất. Sau khi tải về, chạy file .exe vừa tải được và bắt đầu quá trình cài đặt PyCharm</p>
+<center>
+<div class="figure">
+<img src="pycharm.jpg" alt="" />
+<p class="caption">Pycharm</p>
+</div>
+</center>
+</div>
+</div>
+<div id="nhậpxuất-dữ-liệu-trong-python" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Nhập/xuất dữ liệu trong Python</h1>
+<div id="nhậpxuất-dữ-liệu" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Nhập/xuất dữ liệu</h2>
+<div id="lệnh-print" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Lệnh print()</h3>
+<p>       Chương trình đầu tiên trong Python chính là in ra dòng chữ Hello World, những ai khi bắt đầu học lập trình đều quen thuộc với nội dung này. Trong các ngôn ngữ lập trình thì nó luôn luôn tồn tại một hoặc nhiều hàm được cùng để hiển thị dữ liệu ra khi chương trình chạy. VD như trong C thì có <code>printf</code>, trong C++ thì có <code>cout</code>,… Và đối với python thì nó là <code>print</code>.</p>
+<p>       Để có thể in một nội dung ra màn hình trong Python chúng ta sử dụng lệnh print(). Nếu trong đó có nhiều hơn một nội dung thì chúng ta sử dụng dấu phẩy giữa các nội dung. Ngoài ra chúng ta có thể thêm tham số <strong>sep</strong> trong hàm print() để có thể thay đổi giá trị khoảng cách.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">&#39;Hello world!&#39;</span>)</span></code></pre></div>
+<pre><code>## Hello world!</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Welcome&#39;</span>, <span class="st">&#39;to&#39;</span>, <span class="st">&#39;Python!&#39;</span>)</span></code></pre></div>
+<pre><code>## Welcome to Python!</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Welcome&#39;</span>, <span class="st">&#39;to&#39;</span>, <span class="st">&#39;Python!&#39;</span>, sep <span class="op">=</span><span class="st">&#39;--&#39;</span>)</span></code></pre></div>
+<pre><code>## Welcome--to--Python!</code></pre>
+</div>
+<div id="nhập-dữ-liệu-từ-bàn-phím" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Nhập dữ liệu từ bàn phím</h3>
+<p>       Để nhập dữ liệu từ bàn phím trong Python, chúng ta sử dụng phương thức input(). Ví dụ chương trình sau, nhập một dãy ký tự và in ra màn hình</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print(&quot;Mời bạn nhập vào nội dung gì đó: &quot;)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#x = input()</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#print(&quot;Nội dung bạn nhập vào là: &quot;,x)</span></span></code></pre></div>
+<p><em>Chú ý: Câu lệnh input() trả về một chuỗi ký tự, do đó nếu chúng ta muốn kết quả trẻ về là số nguyên thì ta cần ép kiểu như trên. Ví dụ: int(“123”) sẽ chuyển ký tự “123” thành số 123</em></p>
+<p>       Trong Python, để chú thích một câu lệnh, chúng ta sử dụng dấu # để chú thích một dòng code hoặc 3 dấu nháy """ để cho khối lệnh code.</p>
+<p>       Bài tập áp dụng: Nhập vào hai số nguyên a, b từ bàn phím. Viết chương trình in ra tích, tổng, hiệu và thương của hai số này.</p>
+</div>
+</div>
+<div id="khai-báo-biến-trong-python" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Khai báo biến trong Python</h2>
+<div id="khái-niệm-về-biến" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Khái niệm về biến</h3>
+<p>       Biến(variable) là đối tượng mà giá trị của nó có thể thay đổi được khi thực hiện chương trình. Mỗi biến cần được đặt tên và cần một lượng ô nhớ máy tính tương ứng để lưu giá trị cho biến. Trong Python mỗi biến chính là một con trỏ chỉ đến ô nhớ chứa giá trị đã được gán cho biến đó. Khác với các ngôn ngữ lập trình khác, Python không có lệnh khai báo biến mà chỉ có lệnh gán trực tiếp giá trị cho biến theo cách: tên biến = giá trị. Các ô nhớ trong máy tính được đánh địa chỉ bắt đầu từ số 0, để lấy được địa chỉ của ô nhớ, sử dụng phương thức <strong>id(tên biến)</strong>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gán giá trị cho biến x</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">&quot;Learning Python is interesting&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(&quot;Địa chỉ ô nhớ của x là:&quot;, id(x))</span></span></code></pre></div>
+<pre><code>## Learning Python is interesting</code></pre>
+<p>       Chú ý: Cùng một chương trình, mỗi lần thực hiện, địa chỉ ô nhớ của biến có thể khác nhau, lý do là do cơ chế cấp phát bộ nhớ cho biến trong Python. Ví dụ: Khi gán x=123, máy tính sẽ sử dụng một ô nhớ nào đó trong bộ nhớ RAM (Random Access Memory) để lưu trữ giá trị 123 và biến x thành con trỏ chỉ tới ô nhớ chứa giá trị 123. Khi ta gán x=321, máy tính sẽ dùng một ô nhớ khác để lưu giá trị 321 và dùng x là con trỏ chỉ tới ô nhớ mới, ô nhớ chứa giá trị 123 khi này sẽ được giải phóng nếu không có biến nào chỉ tới nó.</p>
+<center>
+<div class="figure">
+<img src="vari1.PNG" alt="" />
+<p class="caption">Cơ chế gán giá trị cho biến</p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="vari2.PNG" alt="" />
+<p class="caption">Cơ chế gán giá trị cho biến</p>
+</div>
+</center>
+<p>Trong trường hợp nhiều biến có cùng giá trị thì các biến này cùng chỉ tới một ô chứa giá trị đó.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">123</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">123</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(a))</span></code></pre></div>
+<pre><code>## 627202224</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(b))</span></code></pre></div>
+<pre><code>## 627202224</code></pre>
+</div>
+<div id="đặt-tên-biến" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Đặt tên biến</h3>
+<p>       Việc đặt tên biến được quy định bởi từng ngôn ngữ lập trình, trong Python được quy định như sau:</p>
+<ol style="list-style-type: decimal">
+<li>Biến có thể chứa các ký tự chữ và ký tự số</li>
+<li>Không được chứa các ký tự trống và các ký tự đặc biệt như +,-,*,/…</li>
+<li>Tên biến không được bắt đầu bằng ký tự số</li>
+<li>Không sử dụng các từ khóa, tên hàm đã được xây dựng trong Python</li>
+<li>Nên đặt tên ngắn cho dễ nhớ</li>
+</ol>
+<p>Ví dụ:</p>
+<ul>
+<li>Tên đúng: x,y,x1,x2</li>
+<li>Tên sai: 1x, 2x, a b, de f.</li>
+</ul>
+</div>
+<div id="gán-giá-trị-cho-biến-rút-gọn" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Gán giá trị cho biến rút gọn</h3>
+<p>       Python cung cấp cho người lập trình cách viết ngắn gọn các biểu thức gán giá trị, rất ngắn gọn và dễ sử dụng, xem bảng sau:</p>
+<table style="width:68%;">
+<caption>Cách gán giá trị rút gọn cho biến</caption>
+<colgroup>
+<col width="41%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cách gán thông thường</th>
+<th>Cách gán rút gọn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a=2; b=2; c=2</td>
+<td>a=b=c=2</td>
+</tr>
+<tr class="even">
+<td>a=1; b=2; c=3</td>
+<td>a,b,c=1,2,3</td>
+</tr>
+<tr class="odd">
+<td><p>Tráo đổi giá trị của a và b</p>
+<p>x=a; a=b; b=x</p></td>
+<td>a,b=b,a</td>
+</tr>
+</tbody>
+</table>
+<p>Trong python, để kiểm tra kiểu dữ liệu của một biến thì chúng ta có thể sử dụng hàm type với cú pháp như sau: <strong>type(biến cần kiểm tra)</strong></p>
+</div>
+</div>
+<div id="kiểu-dữ-liệu-số" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Kiểu dữ liệu số</h2>
+<div id="các-dạng-dữ-liệu-số" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Các dạng dữ liệu số</h3>
+<p>Ngôn ngữ lập trình Python hỗ trợ 3 kiểu dữ liệu về số, đó là:</p>
+<ul>
+<li>Số nguyên - int</li>
+<li>Số thực - float</li>
+<li>Số phức - complex</li>
+</ul>
+<div id="kiểu-số-nguyên---int" class="section level4" number="2.3.1.1">
+<h4><span class="header-section-number">2.3.1.1</span> Kiểu số nguyên - int</h4>
+<p>Python cho phép thực hiện các phép toán cơ bản với kiểu số nguyên và ngoài ra còn cho phép tính toán với các số nguyên có giá trị rất lớn</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="dv">2020</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n<span class="op">=</span><span class="dv">50</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span>a<span class="op">**</span>n</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code></pre></div>
+<pre><code>## 1851690815004441622046571631143732719450426025306843324590930293056552994078680136797862950841843720129280666396262400000000000000000000000000000000000000000000000000</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Phép toán</th>
+<th>Ký hiệu</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cộng</td>
+<td>+</td>
+<td>5+2=7</td>
+</tr>
+<tr class="even">
+<td>Trừ</td>
+<td>-</td>
+<td>5-2+3</td>
+</tr>
+<tr class="odd">
+<td>Nhân</td>
+<td>*</td>
+<td>5*2=10</td>
+</tr>
+<tr class="even">
+<td>Lũy thừa</td>
+<td>**</td>
+<td>5**2=25</td>
+</tr>
+<tr class="odd">
+<td>Chia</td>
+<td>/</td>
+<td>5/2=2.5</td>
+</tr>
+<tr class="even">
+<td>Chia lấy thương</td>
+<td>//</td>
+<td>5//2=2</td>
+</tr>
+<tr class="odd">
+<td>Chia lấy dư</td>
+<td>%</td>
+<td>5%2=1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="kiểu-số-thực---float" class="section level4" number="2.3.1.2">
+<h4><span class="header-section-number">2.3.1.2</span> Kiểu số thực - float</h4>
+<p>Xét chương trình tính diện tích hình tròn</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.14</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pi<span class="op">*</span>r<span class="op">*</span>r</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Dien tich hinh tron la:&quot;</span>, s)</span></code></pre></div>
+<pre><code>## Dien tich hinh tron la: 12.56</code></pre>
+<p>Các phép toán thực hiện trên số thực cũng giống như các phép toán thực hiện trên kiểu số nguyên. Trong Python cho phép viết các số thực dưới dạng kí pháp khoa học của nó, chẳng hạn như <span class="math inline">\(3.0*10^{3}\)</span> có thể viết là <span class="math inline">\(3.0e-3\)</span></p>
+</div>
+<div id="kiểu-số-phức---complex" class="section level4" number="2.3.1.3">
+<h4><span class="header-section-number">2.3.1.3</span> Kiểu số phức - complex</h4>
+<p>Một số phức là một số có dạng <span class="math inline">\(a+bj\)</span>. Trong đó a, b là các số thực; a được gọi là phần thực và b được gọi là phần ảo</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="ot">1j</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">3</span> <span class="op">-</span> <span class="ot">2j</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Tong bang: &quot;</span>, x<span class="op">+</span>y)</span></code></pre></div>
+<pre><code>## Tong bang:  (5-1j)</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Hieu bang: &quot;</span>, x<span class="op">-</span>y)</span></code></pre></div>
+<pre><code>## Hieu bang:  (-1+3j)</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Tich bang: &quot;</span>, x<span class="op">*</span>y)</span></code></pre></div>
+<pre><code>## Tich bang:  (8-1j)</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="bu">complex</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">complex</span>(<span class="dv">2</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code></pre></div>
+<pre><code>## (1+2j)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t)</span></code></pre></div>
+<pre><code>## (2+0j)</code></pre>
+</div>
+<div id="hàm-tạo-số-ngẫu-nhiên" class="section level4" number="2.3.1.4">
+<h4><span class="header-section-number">2.3.1.4</span> Hàm tạo số ngẫu nhiên</h4>
+<p>Python cung cấp mô-đun <strong>random</strong> cho phép sinh các số ngẫu nhiên cả về số nguyên và số thực.</p>
+<ul>
+<li>Hàm <strong>randint(a,b)</strong> tạo ngẫu nhiên một số nguyên thuộc [a,b]</li>
+<li>Hàm <strong>uniform(a,b)</strong> tạo ngẫu nhiên một số thực [a,b].</li>
+</ul>
+<p>Để sử dụng hai câu lệnh này, chúng ta cần import chúng từ mô-đun <strong>random</strong> bằng lệnh <strong>from random import randint, uniform</strong></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint, uniform</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> randint(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> uniform(<span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;So x duoc tao ngau nhien la: &quot;</span>, x)</span></code></pre></div>
+<pre><code>## So x duoc tao ngau nhien la:  2</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;So y duoc tao ngau nhien la: &quot;</span>, y)</span></code></pre></div>
+<pre><code>## So y duoc tao ngau nhien la:  -2.246783318658572</code></pre>
+<p>Một số hàm toán học thông dụng khác có thể xem tại bảng sau:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Tên hàm</strong></th>
+<th><strong>Thực hiện</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(sin(x)\)</span></td>
+<td>Tính sin của một góc có số đo x(rad)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(cos(x)\)</span></td>
+<td>Tính cô sin của một góc có số đo x(rad)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(tan(x)\)</span></td>
+<td>Tính tang của một góc có số đo x(rad)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(sqrt(x)\)</span></td>
+<td>Tính căn bậc hai của x</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(trunc(x)\)</span></td>
+<td>Tính phần nguyên của x</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(pi\)</span></td>
+<td>Số pi</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(round(x, n)\)</span></td>
+<td>Làm tròn x đến n chữ số thập phân</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(abs(x)\)</span></td>
+<td>Tính giá trị tuyệt đối của x</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(max(a_{1},a_{2},…,a_{n})\)</span></td>
+<td>Trả về giá trị lớn nhất</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(min(a_{1},a_{2},…,a_{n})\)</span></td>
+<td>Trả về giá trị nhỏ nhất</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Để import tất cả các hàm trong mô-đun math, ta thực hiện: from math import *</p>
+</blockquote>
+<p>Các bài tập áp dụng:</p>
+<ol style="list-style-type: decimal">
+<li>Bài 1: Nhập số nguyên dương N có 3 chữ số. Tính tổng các chữ số của N</li>
+<li>Bài 2: Nhập vào 3 số nguyên dương a,b,c. Hãy tìm ước chung lớn nhất của 3 số này (GCD - Greatest Common Divisor)</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="cấu-trúc-rẽ-nhánh" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Cấu trúc rẽ nhánh</h1>
+<div id="câu-lệnh-if" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Câu lệnh If</h2>
+<p>Cú pháp của lệnh if như sau: Nếu điều kiện đúng thì sẽ thực hiện khối lệnh.</p>
+<center>
+<div class="figure">
+<img src="ifstatement.jpg" alt="" />
+<p class="caption">Câu lệnh if</p>
+</div>
+</center>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a <span class="op">&lt;</span> b:</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a nho hon b&quot;</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;Tong a va b la: &quot;</span>, a <span class="op">+</span> b)</span></code></pre></div>
+<pre><code>## a nho hon b
+## Tong a va b la:  30</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a <span class="op">&lt;</span> b:</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a nho hon b&quot;</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;Tong a va b la: &quot;</span>, a <span class="op">+</span> b)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Vi tri ngoai khoi lenh tren!&quot;</span>)</span></code></pre></div>
+<pre><code>## Vi tri ngoai khoi lenh tren!</code></pre>
+<p>       <strong>Khái niệm về khối lệnh - codeblock</strong>: Khối lệnh trong Python được định nghĩa là một nhóm các lệnh liên tiếp nhau và được viết thẳng cột với nhau. Các câu lệnh này được gọi là đồng mức (same level).</p>
+</div>
+<div id="câu-lệnh-if-else" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Câu lệnh if-else</h2>
+<p>       Trong câu lệnh này, nếu điều kiện là đúng thì thực hiện khối lệnh 1, còn ngược lại (điều kiện sai) thì thực hiện khối lệnh 2. Sơ đồ thực hiện như sau:</p>
+<center>
+<div class="figure">
+<img src="ifelsestatement.jpg" alt="" />
+<p class="caption">Câu lệnh if-else</p>
+</div>
+</center>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a <span class="op">==</span> b: </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a bang b&quot;</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a khong bang b&quot;</span>)</span></code></pre></div>
+<pre><code>## a bang b</code></pre>
+</div>
+<div id="câu-lệnh-if-elif" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Câu lệnh if-elif</h2>
+<p>Nếu điều kiện 1 đúng thì thực hiện khối lệnh 1, ngược lại nếu điều kiện 2 đúng thì thực hiện khối lệnh 2.</p>
+<center>
+<div class="figure">
+<img src="elifstatement.jpg" alt="" />
+<p class="caption">Câu lệnh elif</p>
+</div>
+</center>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a<span class="op">==</span>b:</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a bang b&quot;</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> a<span class="op">&lt;</span>b:</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a nho hon b&quot;</span>)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a lon hon b&quot;</span>)</span></code></pre></div>
+<pre><code>## a lon hon b</code></pre>
+<p>Các phép toán logic.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td><strong>not</strong> a</td>
+<td>a <strong>and</strong> b</td>
+<td>a <strong>or</strong> b</td>
+</tr>
+<tr class="even">
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+</tr>
+<tr class="odd">
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+<tr class="even">
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+<tr class="odd">
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+</tbody>
+</table>
+<p>Ví dụ: Kiểm tra điều kiện ba số dương có là ba cạnh của một tam giác hay không.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a<span class="op">+</span>b<span class="op">&gt;</span>c) <span class="kw">and</span> (b<span class="op">+</span>c<span class="op">&gt;</span>a) <span class="kw">and</span> (c<span class="op">+</span>a<span class="op">&gt;</span>b):</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a,b,c la ba canh cua mot tam giac&quot;</span>)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;a,b,c khong phai la ba canh cua mot tam giac&quot;</span>)</span></code></pre></div>
+<pre><code>## a,b,c la ba canh cua mot tam giac</code></pre>
+<p><strong>Chú ý:</strong> Các phép toán lô gic có thứ tự ưu tiên thực hiện thấp hơn so với các phép toán số học và phép toán so sánh. Do đó trong biểu thức so sánh trong biểu thức điều kiện trên, ta có thể viết:</p>
+<p>if(a+b&gt;c) and (b+c&gt;a) and (a+c&gt;b) có thể viết được là if a+b&gt;c and b+c&gt;a and a+c&gt;b</p>
+<p>Các bài tập áp dụng:</p>
+<p><strong>Bài 1:</strong> Nhập vào 3 số a,b,c (a#0). Giải phương trình bậc hai <span class="math inline">\(ax^{2}+bx+c=0\)</span> .</p>
+<p><strong>Bài 2:</strong> Nhập vào ba số a,b,c nguyên dương. Kiểm tra xem a,b,c có phải ba cạnh của một tam giác hay không? Nếu là ba cạnh của một tam giác hãy phân loại xem tam giác có 3 cạnh a,b,c đó thuộc loại nào dưới đây: 1. Tam giác đều; 2. Tam giác vuông; 3. Tam giác thường.</p>
+<p><strong>Bài 3:</strong> Giao đoạn - Nhập vào bốn số a,b,c,d (a&lt;b,c&lt;d). Tính xem có bao nhiêu số nguyên thuộc đoạn giao [a;b] và [c;d].</p>
+<p><strong>Bài 4:</strong> Giao hai hình chữ nhật - Cho hai hình chữ nhật có cạnh song song hoặc trùng với các trục tọa độ. Hình chữ nhật thứ nhất được xác định bởi điểm trái dưới <span class="math inline">\(A(x_{A}, y_{A})\)</span> và điểm bên phải trên <span class="math inline">\(B(x_{B}, y_{B})\)</span>. Hình chữ nhật thứ hai được xác định bởi điểm trái dưới <span class="math inline">\(C(x_{C}, y_{C})\)</span> và điểm phải trên <span class="math inline">\(D(x_{D}, y_{D})\)</span>. Xét xem hai hình chữ nhật có giao nhau hay không? Nếu giao nhau (có điểm trong chung) thì tính diện tích phần giao nhau.</p>
+<p>Bài 5: Xếp loại học sinh Cho điểm thi Toán, Lý, Hóa , Tin của học sinh. Hãy xếp loại kết quả của học sinh theo tiêu chí</p>
+<table>
+<thead>
+<tr class="header">
+<th>Điểm trung bình</th>
+<th>Xếp loại</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ĐTB&gt;=9</td>
+<td>Xuất sắc</td>
+</tr>
+<tr class="even">
+<td>8&lt;=ĐTB&lt;9</td>
+<td>Giỏi</td>
+</tr>
+<tr class="odd">
+<td>7&lt;=ĐTB&lt;8</td>
+<td>Khá</td>
+</tr>
+<tr class="even">
+<td>5&lt;=ĐTB&lt;7</td>
+<td>Trung bình</td>
+</tr>
+<tr class="odd">
+<td>ĐTB&lt;5</td>
+<td>Yếu</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cấu-trúc-lặp" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Cấu trúc lặp</h1>
+<div id="định-nghĩa-công-việc-lặp" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Định nghĩa công việc lặp</h2>
+<p>       Trong quá trình thực hiện một công việc nào đó, chúng ta sẽ bắt gặp những quá trình mà các công việc được thực hiện giống nhau lặp đi lắp lại. Các công việc đó có thể là giống nhau hoặc chỉ khác nhau về giá trị tính toán. Thường có hai loại lặp đó là:</p>
+<ul>
+<li>Lặp với số lần lặp xác định trước</li>
+<li>Lặp với số lần lặp chưa được xác định trước</li>
+</ul>
+</div>
+<div id="vòng-lặp-for" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Vòng lặp for</h2>
+<p>Cấu trúc của vòng lặp for trong Python như sau:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for bien_lap in chuoi_lap:</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;Khoi lenh for&gt;</span></span></code></pre></div>
+<p>       Trong cú pháp trên, chuoi_lap là chuỗi cần lặp, bien_lap là biến nhận giá trị của từng mục bên trong chuoi_lap trên mỗi lần lặp. Vòng lặp sẽ tiếp tục cho đến khi nó lặp tới mục cuối cùng trong chuỗi.</p>
+<p>       Khối lệnh của for được thụt lề để phân biệt với phần còn lại của code.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Lap ky tu trong chuoi ICTU</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chu <span class="kw">in</span> <span class="st">&#39;ICTU&#39;</span>:</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;Chu cai hien tai la:&#39;</span>, chu)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Lap tu trong mot chuoi</span></span></code></pre></div>
+<pre><code>## Chu cai hien tai la: I
+## Chu cai hien tai la: C
+## Chu cai hien tai la: T
+## Chu cai hien tai la: U</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>chuoi <span class="op">=</span> [<span class="st">&#39;ICTU&#39;</span>,<span class="st">&#39;vi&#39;</span>,<span class="st">&#39;yeu&#39;</span>, <span class="st">&#39;ma&#39;</span>, <span class="st">&#39;den&#39;</span>]</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tu <span class="kw">in</span> chuoi:</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;Toi yeu&#39;</span>, tu)</span></code></pre></div>
+<pre><code>## Toi yeu ICTU
+## Toi yeu vi
+## Toi yeu yeu
+## Toi yeu ma
+## Toi yeu den</code></pre>
+<div id="hàm-range" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Hàm range</h3>
+<p>       Chúng ta có thể sử dụng hàm range() để tạo ra một dãy số. Ví dụ, range(100) sẽ tạo một dãy số từ 0 đến 99 (100 số). Hàm range(số bắt đầu, số kết thúc, khoảng cách giữa hai số) được sử dụng để tạo dãy số tùy chỉnh. Nếu không đặt khoảng cách giữa hai số thì Python sẽ hiểu mặc định nó bằng 1.</p>
+<p>       Ví dụ: Viết 10 lần “Anh xin lỗi”, ta sẽ cho biến i lặp từ 0 đến 10 như dưới đây:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (<span class="st">&quot;Anh xin loi em!&quot;</span>)</span></code></pre></div>
+<pre><code>## Anh xin loi em!
+## Anh xin loi em!
+## Anh xin loi em!
+## Anh xin loi em!
+## Anh xin loi em!
+## Anh xin loi em!
+## Anh xin loi em!
+## Anh xin loi em!
+## Anh xin loi em!
+## Anh xin loi em!</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Em oi, anh chep xong 10 lan roi!&quot;</span>)</span></code></pre></div>
+<pre><code>## Em oi, anh chep xong 10 lan roi!</code></pre>
+<p>       Hàm range() không lưu tất cả các giá trị trong bộ nhớ mà nó lưu giá trị bắt đầu, giá trị kết thúc và khoảng cách giữa hai số từ đó tạo ra số tiếp theo trong dãy.
+       Hàm range() trả về một biến chứa một dãy các giá trị nằm trong một khoảng xác định theo quy luật. Hàm này có 3 dạng:</p>
+<ul>
+<li><p>range(stop): nhận 1 tham số là giá trị cuối của dãy và trả về dãy số [0, stop – 1]. Ví dụ range(5) sẽ trả lại dãy số 0, 1, 2, 3, 4. Bước nhảy giữa các giá trị kế tiếp là 1.</p></li>
+<li><p>range(start, stop): nhận 2 tham số là giá trị đầu và cuối của dãy, trả về dãy [start, stop-1]. Ví dụ, range(1, 5) sẽ trả lại dãy số 1, 2, 3, 4 (bước nhảy giữa các giá trị kế tiếp là 1).</p></li>
+<li><p>range(start, stop, step): tương tự như trường hợp 2 nhưng bước nhảy được xác định bởi biến step. Ví dụ, range(1, 10, 2) sẽ trả lại dãy 1, 3, 5, 7, 9 (bước nhảy giữa các giá trị kế tiếp là 2).</p></li>
+</ul>
+<p>Trong hàm range, start, stop và step có thể nhận cả giá trị âm và dương:</p>
+<ul>
+<li><p>Nếu step nhận giá trị âm (và start &gt; stop) sẽ tạo ra dãy giảm dần. Ví dụ range(0, -5, -1) sẽ tạo ra dãy 0, -1, -2, -3, -4.</p></li>
+<li><p>Nếu stop &lt; start và step dương, hoặc stop &gt; start và step âm, sẽ tạo ra chuỗi trống (không có giá trị nào). Ví dụ, range(2, -3, 1) và range(2, 3, -1) đều không tạo ra phần tử nào.</p></li>
+</ul>
+</div>
+<div id="sử-dụng-vòng-lặp-for-kết-hợp" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Sử dụng vòng lặp for kết hợp</h3>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>companies <span class="op">=</span> [<span class="st">&#39;Apple&#39;</span>, <span class="st">&#39;Google&#39;</span>, <span class="st">&#39;Microsoft&#39;</span>, <span class="st">&#39;Huawei&#39;</span>, <span class="st">&#39;Yandex&#39;</span>, <span class="st">&#39;Facebook&#39;</span>]</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> companies:</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(c)</span></code></pre></div>
+<pre><code>## Apple
+## Google
+## Microsoft
+## Huawei
+## Yandex
+## Facebook</code></pre>
+<p>       Trong ví dụ trên, companies là một biến kiểu danh sách (list). Kiểu dữ liệu này chúng ta chưa học nhưng bạn có thể hình dung nó tương tự như kiểu mảng của C. Biến kiểu list cũng có thể trở thành danh sách dữ liệu cho vòng lặp for. Khi này biến chạy c sẽ lần lượt nhận các giá trị trong danh sách theo thứ tự.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> (<span class="op">-</span><span class="fl">22.0</span>, <span class="fl">3.5</span>, <span class="fl">8.1</span>, <span class="op">-</span><span class="dv">10</span>, <span class="fl">0.5</span>):</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> total <span class="op">+</span> num</span></code></pre></div>
+<p>Trong ví dụ này chúng tính tổng các số dương từ một tuple. Tuple cũng là một kiểu dữ liệu tập hợp mà chúng ta sẽ học chi tiết sau.</p>
+</div>
+</div>
+<div id="cấu-trúc-lặp-while" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Cấu trúc lặp while</h2>
+<p>Xét ví dụ sau:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co">word = &#39;&#39;</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co">while(word.lower() != &#39;close&#39;):</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co">    word = input(&#39;Enter a word: &#39;)</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="co">    print(f&#39;You have typed &quot;{word}&quot;&#39;) &quot;&quot;&quot;</span></span></code></pre></div>
+<pre><code>## &#39;\nword = \&#39;\&#39;\nwhile(word.lower() != \&#39;close\&#39;):\n\tword = input(\&#39;Enter a word: \&#39;)\n\tprint(f\&#39;You have typed &quot;{word}&quot;\&#39;) &#39;</code></pre>
+<p>       Trong ví dụ này chúng ta liên tục yêu cầu người dùng nhập vào một từ. Nếu người dùng nhập từ ‘close’ thì sẽ kết thúc vòng lặp (và kết thúc chương trình). Nếu người dùng nhập từ khác thì sẽ yêu cầu nhập lại. Chúng ta không biết khi nào người dùng sẽ nhập ‘close’, và cũng có thể là không bao giờ. Vì vậy, vòng lặp while được gọi là vòng lặp với số bước không xác định trước.</p>
+<p>       Biến word đóng vai trò là biến điều khiển cho biểu thức điều kiện</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">100</span>:</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">+=</span> i</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>)</span></code></pre></div>
+<pre><code>## 4950</code></pre>
+<p>       Trong ví dụ này chúng ta tính tổng các số từ 1 đến 99. Để thực hiện việc này chúng ta sử dụng một biến i với vai trò biến đếm. Biến i ban đầu nhận giá trị 1. Qua mỗi vòng lặp i sẽ tăng thêm 1 đơn vị, và biến sum sẽ cộng thêm giá trị bằng i. Quá trình này sẽ lặp đi lặp lại chừng nào i vẫn nhỏ hơn 100. Đến khi i đạt giá trị 100 thì vòng lặp kết thúc.</p>
+<p>       Cấu trúc while của Python là một lệnh phức hợp với một mệnh đề. Trong đó, header là while <biểu thức logic>:. Biểu thức logic là loại biểu thức mà kết quả trả về thuộc kiểu bool (giá trị True hoặc False). Trong các ví dụ trên, biểu thức logic là i &lt; 100 và char.lower() != ‘close’.</p>
+<p>       Chừng nào biểu thức logic còn nhận giá trị True thì sẽ thực hiện danh sách lệnh ở phần tiếp. Để tránh tạo thành vòng lặp vô tận, bên trong danh sách lệnh của vòng lặp while phải có lệnh có tác dụng làm thay đổi giá trị của biểu thức logic.</p>
+<p>       Trong ví dụ thứ nhất, chúng ta liên tục yêu cầu người dùng nhập vào giá trị mới cho biến char. Điều này đảm bảo khả năng thoát khỏi vòng lặp.</p>
+<p>       Trong ví dụ thứ hai, chúng ta làm biến đổi giá trị của i qua mỗi vòng lặp (tăng thêm 1 đơn vị). Điều này đảm bảo đến một lúc nào đó i sẽ có giá trị lớn hơn 100 và kết thúc vòng lặp.</p>
+</div>
+<div id="điều-khiển-vòng-lặp-break-và-continue" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Điều khiển vòng lặp, break và continue</h2>
+<p>      Khi làm việc với vòng lặp có thể xuất hiện hai tình huống:</p>
+<ol style="list-style-type: decimal">
+<li><p>Bạn muốn kết thúc vòng lặp sớm hơn dự định hoặc theo điều kiện. Lấy ví dụ, bạn cầm một danh sách khách hàng và muốn tìm tên một khách trong đó. Bạn xem lần lượt từng tên từ đầu danh sách. Nếu gặp tên khách hàng cần tìm, bạn sẽ dừng lại chứ không tiếp tục xem đến hết danh sách nữa. Ở đây bạn phá vỡ hoàn toàn vòng lặp.</p></li>
+<li><p>Bạn muốn bỏ qua một chu kỳ trong vòng lặp để bắt đầu chu kỳ tiếp theo. Lấy ví dụ, bạn dự định chơi 10 ván bài. Ở ván thứ 3 bài xấu quá, bạn quyết định bỏ cuộc để chờ chơi ván tiếp theo. Ở đây bạn không dừng hoàn toàn vòng lặp mà chỉ bỏ không làm những việc nhẽ ra phải làm trong chu kỳ đó và khởi động một chu kỳ mới.</p></li>
+</ol>
+<p>       Hai tình huống này được Python giải quyết bằng hai lệnh tương ứng: break (phá vỡ vòng lặp, kết thúc sớm) và continue (bỏ qua chu kỳ hiện tại, bắt đầu một chu kỳ lặp mới). Cả hai loại vòng lặp (for, while) đều có thể sử dụng break và continue.</p>
+<p>       Ví dụ với break:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># breaking out of a loop early</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]:</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> item <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(item, <span class="st">&quot; ...break!&quot;</span>)</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item, <span class="st">&quot; ...next iteration&quot;</span>)</span></code></pre></div>
+<pre><code>## 1  ...next iteration
+## 2  ...next iteration
+## 3  ...break!</code></pre>
+<p>       Câu lệnh <strong>continue</strong> được viết trong khối lệnh của các vòng lặp. Khi thực hiện câu lệnh <strong>continue</strong>, các câu lệnh phía sau trong khối lệnh sẽ không được thực hiện mà sẽ quay lại lần lặp tiếp theo</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>:</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x<span class="op">%</span><span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>):</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">continue</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;x= &quot;</span>, x, <span class="st">&quot;la so le&quot;</span>)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  </span></code></pre></div>
+<pre><code>## x=  1 la so le
+## x=  3 la so le
+## x=  5 la so le</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>:</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="op">==</span> <span class="dv">4</span>):</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;x= &quot;</span>, x)</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  </span></code></pre></div>
+<pre><code>## x=  1
+## x=  2
+## x=  3</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;x, y:&quot;</span>,x,y,sep<span class="op">=</span><span class="st">&#39; &#39;</span>)</span></code></pre></div>
+<pre><code>## x, y: 0 0
+## x, y: 0 1
+## x, y: 1 0
+## x, y: 1 1
+## x, y: 2 0
+## x, y: 2 1</code></pre>
+</div>
+<div id="bài-tập-áp-dụng-for-while" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Bài tập áp dụng for, while</h2>
+<p>Hãy sử dụng cấu trúc lặp for và while thực hiện các bài toán sau:</p>
+<p><strong>Bài 1.</strong> Cho một số tự nhiên <span class="math inline">\(n(n\leq{10^{1000}})\)</span>. Tính tổng các chữ số của <span class="math inline">\(n\)</span>. Ví dụ: <span class="math inline">\(n=123\)</span>, tổng các chữ số bằng <span class="math inline">\(1+2+3=6\)</span></p>
+<p><strong>Bài 2.</strong> Chữ số lớn nhất và chữ số nhỏ nhất.
+Cho một số tự nhiên <span class="math inline">\(n(n\leq{10^{1000}})\)</span>. Tìm chữ số lớn nhất và chữ số nhỏ nhất của <span class="math inline">\(n\)</span>. Ví dụ <span class="math inline">\(n=123\)</span>, chữ số lớn nhất bằng 3, chữ số nhỏ nhất bằng 1.</p>
+<p><strong>Bài 3.</strong> Cho hai số nguyên dương a và b. Sử dụng thuật toán Euclid tìm ước chung lớn nhất và bội số chung nhỏ nhất của a và b.</p>
+<p><strong>Bài 4.</strong> Kiểm tra số nguyên tố - Cho một số tự nhiên N nhập vào từ bàn phím, hãy kiểm tra xem N có phải là một số nguyên tố hay không?</p>
+<p><strong>Bài 5.</strong> Số hoàn hảo - Một số tự nhiên N được gọi là một số hoàn hảo nếu tổng các ước dương của nó bằng 2N. Ví dụ: N=6 có các ước dương là 1,2,3,6. Tổng bằng 2*6=12. Như vậy 6 là một số hoàn hảo. Hãy nhập vào một đoạn [a;b]. Kiểm tra xem có bao nhiêu số hoàn hảo nằm trong khoảng này.</p>
+<p><strong>Bài 6.</strong> Số lũy thừa dạng 2-3: Một số tự nhiên N được gọi là có dạng lũy thừa 2-3 nếu N có dạng: <span class="math inline">\(N=2^{x}3^{y}\)</span>. Ví dụ: 2,3,6,12… là các số lũy thừa 2-3. Nhập vào một số tự nhiên N từ bàn phím, kiểm tra xem N có phải là lũy thừa 2-3 không?</p>
+</div>
+</div>
+</div>
+
+
+
+<script>
+// when the page is about to reload via servr, remember the scroll position
+document.addEventListener('servr:reload', function(e) {
+  sessionStorage.setItem('pagedown-scroll', window.scrollY);
+});
+</script>
+</body>
+</html>
